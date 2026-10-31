@@ -1,0 +1,38 @@
+:root {
+  --color-bg: var(--ivory);
+  --color-surface: var(--paper);
+  --color-text: rgb(var(--ink-rgb));
+  --color-text-muted: rgb(var(--ink-rgb) / var(--alpha-muted));
+  --color-line: rgb(var(--ink-rgb) / var(--alpha-strong));
+  --color-action: var(--brand-coral);
+  --color-action-text: rgb(var(--ink-rgb));
+  --color-support: var(--brand-rose);
+  --color-support-text: rgb(var(--ink-rgb));
+  --color-inverse: var(--ivory);
+  --color-deep: var(--night);
+  --color-focus: rgb(var(--ink-rgb));
+  --color-photo-bg: var(--photo-paper);
+  --color-veil: rgb(var(--ink-rgb) / var(--alpha-overlay));
+  --font-heading: var(--font-display);
+  --font-copy: var(--font-body);
+  --layout-gutter: var(--gutter);
+  --layout-section: var(--section-y);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: var(--night);
+    --color-surface: var(--night-panel);
+    --color-text: rgb(var(--cream-rgb));
+    --color-text-muted: rgb(var(--cream-rgb) / var(--alpha-muted));
+    --color-line: rgb(var(--cream-rgb) / var(--alpha-strong));
+    --color-focus: var(--brand-rose);
+  }
+}
+:root[data-theme='dark'] {
+  --color-bg: var(--night);
+  --color-surface: var(--night-panel);
+  --color-text: rgb(var(--cream-rgb));
+  --color-text-muted: rgb(var(--cream-rgb) / var(--alpha-muted));
+  --color-line: rgb(var(--cream-rgb) / var(--alpha-strong));
+  --color-focus: var(--brand-rose);
+}

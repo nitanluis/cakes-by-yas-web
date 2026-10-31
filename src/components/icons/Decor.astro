@@ -1,0 +1,10 @@
+---
+import { brand } from '../../data/brand';
+interface Props { variant: 'wave' | 'ring' | 'entry' | 'arch-title' | 'separator'; text?: string; id?: string; }
+const { variant, text = '', id = 'circle-type' } = Astro.props;
+---
+{variant === 'wave' && <svg class="footer-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path data-wave d="M0 100V70Q360 0 720 70T1440 70V100Z" fill="currentColor" /></svg>}
+{variant === 'entry' && <svg viewBox="0 0 1440 1200" preserveAspectRatio="none" aria-hidden="true"><path data-entry-path d="M0 0H1440V1200C1080 1200 360 1200 0 1200Z" fill="currentColor" /></svg>}
+{variant === 'separator' && <img class="brand-separator" src={brand.mark} width={brand.markWidth} height={brand.markHeight} alt="" aria-hidden="true" />}
+{variant === 'ring' && <svg class="circle-type" viewBox="0 0 400 400" aria-hidden="true"><defs><path id={id} d="M200 200m-170 0a170 170 0 1 1 340 0a170 170 0 1 1-340 0" /></defs><text><textPath href={`#${id}`} textLength="1040">{text}</textPath></text></svg>}
+{variant === 'arch-title' && <svg class="arch-type" viewBox="0 0 221.66 283.6" aria-hidden="true"><defs><path id={id} d="M.5 283.6V106C.5 48.7 48.7 5 106 5h5.6c59.5 0 107.8 43.8 107.8 103.4v175.2H.5Z" /></defs><text><textPath data-arch-type href={`#${id}`} startOffset="220">{text}</textPath></text></svg>}

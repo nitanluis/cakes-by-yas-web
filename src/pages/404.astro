@@ -1,0 +1,9 @@
+---
+import { sitePath } from '../shared/site-path';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { brand } from '../data/brand';
+---
+<Layout locale="en" title="Page not found — Cakes by Yas" description="Find your way back to Cakes by Yas." bare>
+  <main class="error-page section" id="main"><a href={sitePath("en/")} class="error-brand"><img src={brand.logo} width={brand.width} height={brand.height} alt="Cakes by Yas" /></a><p class="eyebrow">404</p><h1 class="display-title">A little detour.</h1><p>This page isn’t here. Your next celebration still can be.</p><p lang="es">Esta página no está aquí. Volvamos a algo dulce.</p><div class="gallery-row"><Button href={sitePath("en/")}>Explore our cakes</Button><Button href={sitePath("es/")} variant="outline">Ver nuestros pasteles</Button></div></main>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import { whatsapp, menu, type Creation, type Locale } from '../data/catalog';
+import Button from './Button.astro';
+import { copy } from '../data/copy';
+interface Props { cake: Creation; locale: Locale; arch?: boolean; }
+const { cake, locale, arch = false } = Astro.props;
+const t = copy[locale];
+const product = menu.flatMap(group => group.items).find(item => item.id === cake.id);
+const priceLabel = product?.price ? `$${product.price}` : product?.sizes ? `${t.from} $${product.sizes[0].price}` : t.design;
+---
+<article class:list={['cake-card', { 'cake-card--arch': arch }]}>
+  <a class="cake-card__photo" href={cake.image.src} data-photo={cake.id} aria-label={`${locale === 'es' ? 'Ver' : 'View'}: ${cake.title[locale]}`}>
+    <Image src={cake.image} alt={cake.alt[locale]} widths={[400, 640, 900]} sizes="(max-width: 768px) 92vw, 30vw" format="webp" loading="lazy" />
+    <span class="product-closeup" aria-hidden="true"><Image src={cake.image} alt="" widths={[400, 640, 900]} sizes="(max-width: 768px) 92vw, 30vw" format="webp" loading="lazy" /></span>
+    <span class="product-chip product-chip--one" aria-hidden="true">{t.madeToOrder}</span><span class="product-chip product-chip--two" aria-hidden="true">{locale === 'es' ? 'Tu diseño' : 'Your design'}</span>
+    <span class="cake-card__view" aria-hidden="true">{locale === 'es' ? 'Ver fotografía' : 'View photo'}</span>
+  </a>
+  <p class="eyebrow">{cake.kind[locale]}</p>
+  <h3>{cake.title[locale]}</h3>
+  <div class="cake-card__meta"><span>{priceLabel}</span></div>
+  <Button href={whatsapp(locale, cake.title[locale])} class="cake-card__action">{locale === 'es' ? 'Consultar con Yas' : 'Ask Yas'}</Button>
+</article>

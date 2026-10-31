@@ -1,0 +1,6 @@
+.hero-review { position: fixed; z-index: 30; bottom: var(--space-4); left: var(--layout-gutter); right: var(--layout-gutter); padding: var(--space-4) var(--space-5); background: var(--color-bg); color: var(--color-text); border: var(--border-thin) solid var(--color-text); border-radius: var(--radius-panel); display: flex; gap: var(--space-5); align-items: center; justify-content: space-between; }
+.hero-review p { font-size: var(--text-xs); margin-top: var(--space-1); }
+.hero-review nav { display: flex; gap: var(--space-3); flex-wrap: wrap; flex-shrink: 0; }
+.hero-review a { padding: var(--space-2) var(--space-3); border-radius: var(--radius-pill); font-size: var(--text-sm); border: var(--border-thin) solid var(--color-text); }
+.hero-review a[aria-current='page'] { background: var(--color-action); color: var(--color-action-text); border-color: var(--color-action); }
+@media (max-width:768px) { .hero-review { display: block; } .hero-review nav { margin-top: var(--space-3); gap: var(--space-2); } }

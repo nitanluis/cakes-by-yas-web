@@ -1,0 +1,31 @@
+{
+  "source": "docs\\brand\\2026-10-30-propuestas\\01-y-de-crema-make-it-a-yas-day.png",
+  "crop": [
+    240,
+    65,
+    1320,
+    550
+  ],
+  "method": "Foreground/background color planes, alpha matting, bicubic mask at 4x, Potrace Bezier outline fitting. No font substitution.",
+  "shapeIntersectionOverUnion": 0.9979277664064524,
+  "referenceArea": 196730,
+  "vectorArea": 196640,
+  "meanAbsoluteAlphaError": 0.0023176785032446067,
+  "boundaryDistanceP95Px": 1,
+  "boundaryDistanceMaxPx": 1.4142135623730951,
+  "scope": "Main top lockup only; shape metrics compare against alpha estimated from the PNG, not against unknown original vector artwork. Flat fills cannot preserve raster texture.",
+  "files": [
+    {
+      "name": "cakes-by-yas-isotipo.svg",
+      "bytes": 14911
+    },
+    {
+      "name": "cakes-by-yas-logo-colores-marca.svg",
+      "bytes": 56201
+    },
+    {
+      "name": "cakes-by-yas-logo.svg",
+      "bytes": 56201
+    }
+  ]
+}

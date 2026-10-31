@@ -1,0 +1,18 @@
+---
+import Home from '../../../components/Home.astro';
+import '../../../styles/hero-review.css';
+
+export async function getStaticPaths() {
+  if (!import.meta.env.DEV) return [];
+  const { heroConcepts } = await import('../../../dev/hero-concepts');
+  const options = heroConcepts.map(({ id, name }) => ({ id, name }));
+  return heroConcepts.map(concept => ({ params: { concept: concept.id }, props: { concept, options } }));
+}
+const { concept, options } = Astro.props;
+---
+<Home locale="es" heroPreview={concept} review>
+  <aside slot="review" class="hero-review" aria-label="Comparar conceptos de portada">
+    <div><strong>{concept.name}</strong><p>{concept.description} Concepto generado; no es un trabajo realizado por Yas.</p></div>
+    <nav aria-label="Opciones de hero">{options.map(option => <a href={`/galeria/hero/${option.id}/`} aria-current={option.id === concept.id ? 'page' : undefined}>{option.name}</a>)}<a href="/es/">Volver a la web</a></nav>
+  </aside>
+</Home>

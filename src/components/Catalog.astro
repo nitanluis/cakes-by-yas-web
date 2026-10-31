@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import { menu, fillings, whatsapp, catalogImages, type Locale } from '../data/catalog';
+import { copy } from '../data/copy';
+import Button from './Button.astro';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = copy[locale];
+---
+<div class="catalog" data-catalog>
+  <div class="catalog-tabs" role="group" aria-label={locale === 'es' ? 'Filtrar menú' : 'Filter menu'} data-tabs hidden>
+    <button type="button" class="tab" data-category="all" aria-pressed="true">{t.allMenu}</button>
+    {menu.map(group=><button type="button" class="tab" data-category={group.id} aria-pressed="false">{group.name[locale]}</button>)}
+  </div>
+  <p class="sr-only" role="status" data-filter-status></p>
+  <div class="menu-groups">{menu.map(group=><section class="menu-group" data-group={group.id} aria-labelledby={`group-${group.id}`}>
+    <h3 id={`group-${group.id}`}>{group.name[locale]}</h3>
+    <div class="menu-items">{group.items.map((item,i)=>{ const photo=catalogImages[item.id]; return <article class="menu-item">
+      {photo ? <div class="menu-photo"><Image src={photo.image} alt={photo.alt[locale]} widths={[400,640,900]} sizes="(max-width:768px) 92vw,26vw" format="webp" loading="lazy"/><span class="product-closeup" aria-hidden="true"><Image src={photo.image} alt="" widths={[400,640,900]} sizes="(max-width:768px) 92vw,26vw" format="webp" loading="lazy"/></span><span class="product-chip product-chip--one" aria-hidden="true">{t.madeToOrder}</span><span class="product-chip product-chip--two" aria-hidden="true">Cakes by Yas</span></div> : <div class:list={['menu-lettering',{'menu-lettering--rose':i%2===0}]}><span class="eyebrow">Cakes by Yas · {t.madeToOrder}</span><span class="menu-lettering__name">{item.name[locale]}</span><span>{t.noPhoto}</span></div>}
+      <div class="menu-item__heading"><h4>{item.name[locale]}</h4><span class="price">{item.price?`$${item.price}`:item.sizes?`${t.from} $${item.sizes[0].price}`:t.quote}</span></div>
+      {item.unit&&<p class="menu-unit">{t.dozen}</p>}
+      {item.sizes&&<ul class="sizes">{item.sizes.map(size=><li><span>{size.name[locale]} · {size.servings} {t.servings}</span><span>${size.price}</span></li>)}</ul>}
+      {item.filling&&<p class="menu-unit">{t.options}</p>}
+      {photo&&<p class="menu-example">{t.photoExample}</p>}
+      <Button href={whatsapp(locale,item.name[locale])} class="menu-inquire">{locale==='es'?'Consultar con Yas':'Ask Yas about this'}</Button>
+    </article>})}</div>
+  </section>)}</div>
+  <div class="fillings"><p class="eyebrow">{t.options}</p><ul>{fillings.map(filling=><li>{filling[locale]}</li>)}</ul></div>
+  <p class="menu-note">{t.priceNote}</p>
+</div>

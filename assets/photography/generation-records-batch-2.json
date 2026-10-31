@@ -1,0 +1,26 @@
+[
+  {
+    "name": "trolls-belen-v1",
+    "source": "DOt3Pg5ktHf.jpg",
+    "prompt": "Precise photograph environment edit. Image 1 is the real cake and the ONLY product identity source. Image 2 supplies ONLY the studio background and lighting style. Preserve image 1's exact handmade two-tier Trolls birthday cake: turquoise-blue upper tier, saturated pink lower tier, ivory piped join, all flowers, mushrooms, metallic gold and pastel spheres, rainbow, Poppy toy figurine with fuzzy magenta hair, and the exact ivory BELEN lettering. Preserve each decoration's position and count, proportions, imperfect real frosting texture, toy face, and original camera perspective. Do not redesign, beautify the icing, or change colors. Replace only the domestic surroundings with image 2's seamless warm ivory subtle blush matte tabletop and cyclorama, with large diffused upper-left softbox and restrained right fill, believable contact shadow. Full cake and plain existing round board fully visible, portrait 4:5, comfortable breathing room above hair and below board. Remove the reflective stand and house background. Real optical food photography, restrained sharpness, naturally imperfect cream, no CGI shine, plastic smoothing, fake blur, added ornaments, logos or props. Keep BELEN exact; never borrow cake objects from image 2.",
+    "output": "C:\\Users\\arias\\Desktop\\CakeByYas-web-codex\\assets\\photography\\trolls-belen-v1.png",
+    "status": "candidate-review",
+    "generated": "2026-10-30"
+  },
+  {
+    "name": "flan-v1",
+    "source": "DcG_qlWojg-.jpg",
+    "prompt": "Professional photographic background replacement. Image 1 is the only actual dessert identity. Preserve its complete real round flan, exact wide low cylinder proportions, smooth amber caramel top with its existing tiny specks and subdued reflections, pale custard side with its actual fine bubbles and slight irregularity, caramel pooling at base, and original slightly elevated camera perspective. Do NOT alter the flan itself, make it taller, add glazing, fruit, herbs, cut slices or extra food. Replace domestic counter and the tall sides of the white takeaway box with the same seamless warm ivory-blush matte studio environment and upper-left diffused softbox as image 2. Keep a simple flat white food-safe base under the flan, no pedestal. Image 2 influences only environment/light, never its cake/decorations. Show full flan and base with modest surrounding space, portrait 4:5, product reasonably large in frame. Neutral faithful food colors, natural optical detail and gentle shadow, no CGI surface, over-sharpening, plastic polish or artificial bokeh. This is modest retouching of a real handmade product, not a redesign.",
+    "output": "C:\\Users\\arias\\Desktop\\CakeByYas-web-codex\\assets\\photography\\flan-v1.png",
+    "status": "candidate-review",
+    "generated": "2026-10-30"
+  },
+  {
+    "name": "tres-leches-v1",
+    "source": "DcG9fgEogo7.jpg",
+    "prompt": "Precise real-product photo retouching. Image 1 is the exact product; image 2 is ONLY the studio environment style. Preserve the rectangular tres leches cake from image 1 WITH its authentic crinkled disposable aluminum tray, white handmade cream surface and piped border, exactly THREE strawberry halves with their leaves at the upper left, exact mirrored-gold Happy Birthday lettering laid flat on top, three small gold balls plus gold rod near lower center and existing scattered gold pearls/leaf. Keep the original slightly elevated three-quarter perspective and rectangular proportions. Do not turn it into a round cake, do not remove the foil tray, do not add or duplicate fruit/ornaments, do not retype text in a new font. Protect the real cream texture, small irregularities and real food colors. Replace only household background and extra outer serving plate with a seamless warm ivory-blush matte studio tabletop/cyclorama matching image 2. Soft diffused upper-left light, restrained right fill, believable tray contact shadow, no CGI polish, no plastic cream, no exaggerated sharpness or fake depth blur. Complete tray visible with comfortable breathing room on all sides, portrait 4:5 professional bakery catalog photograph. Do not borrow the cake/decorations from image 2.",
+    "output": "C:\\Users\\arias\\Desktop\\CakeByYas-web-codex\\assets\\photography\\tres-leches-v1.png",
+    "status": "candidate-review",
+    "generated": "2026-10-30"
+  }
+]

@@ -1,0 +1,30 @@
+# Claims locales; no afirman despliegue ni resultados de producción.
+- claim: "La nueva aplicación usa Astro 7.4.4."
+  doc: CLAUDE.md
+  assert: if ((Get-Content -Raw -LiteralPath 'package.json' | ConvertFrom-Json).dependencies.astro -eq '7.4.4') { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "Existe configuración Vercel preparada."
+  doc: CLAUDE.md
+  assert: if (Test-Path -LiteralPath 'vercel.json') { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "El catálogo vigente y sus traducciones tienen una fuente explícita."
+  doc: CLAUDE.md
+  assert: if ((Test-Path -LiteralPath 'src/data/catalog.ts') -and (Test-Path -LiteralPath 'src/data/copy.ts')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "Las rutas de inglés y español se construyen desde una lista explícita."
+  doc: PRODUCT.md
+  assert: if (Select-String -Quiet -SimpleMatch -Pattern "['en', 'es']" -LiteralPath 'src/data/catalog.ts') { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "Mini Pecca está excluido del catálogo vigente."
+  doc: PRODUCT.md
+  assert: if (!(Select-String -Quiet -Pattern 'pecca' -LiteralPath 'src/data/catalog.ts')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "Los originales y registros de generación se conservan separados."
+  doc: assets/photography/REVIEW.md
+  assert: if ((Test-Path -LiteralPath 'assets/source-instagram/downloads.json') -and (Test-Path -LiteralPath 'assets/photography/generation-records.json') -and (Test-Path -LiteralPath 'assets/photography/generation-records-batch-2.json')) { exit 0 } else { exit 1 }
+  expect: pass

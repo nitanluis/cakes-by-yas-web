@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 2,
+  "generated": "2026-10-30",
+  "source": {
+    "reference": "https://bernicebakery.com/",
+    "measured": "docs/design/referencia-bernice/SISTEMA-MEDIDO.md",
+    "brand": "Usuario, conversación 2026-10-30"
+  },
+  "narrative": {
+    "north": "Celebraciones personales y repostería artesanal, con fotografía grande, arcos y escala editorial.",
+    "rules": [
+      {
+        "name": "The Real Cake Rule",
+        "text": "Mostrar el trabajo de Yas con textura real y sin inventar productos o pruebas comerciales."
+      },
+      {
+        "name": "The Coral Rule",
+        "text": "Una familia coral de acción; rosa de apoyo."
+      },
+      {
+        "name": "The Scale Rule",
+        "text": "Conservar contraste de escala entre titular, fotografía y detalle."
+      },
+      {
+        "name": "The Fit Rule",
+        "text": "Compactar el menú antes de comprimir el logo."
+      },
+      {
+        "name": "The Surface Rule",
+        "text": "Profundidad con fotografía y composición antes que sombras."
+      },
+      {
+        "name": "The Motion Access Rule",
+        "text": "Todo el catálogo disponible sin animación o JavaScript."
+      }
+    ],
+    "dos": [
+      "Conservar textura",
+      "Fuente única de precios",
+      "Contacto visible"
+    ],
+    "donts": [
+      "Inventar reseñas",
+      "Publicar dirección doméstica",
+      "Publicar galería de desarrollo"
+    ]
+  },
+  "tokens": {
+    "primitives": "src/shared/tokens/primitives.css",
+    "semantic": "src/shared/tokens/semantic.css",
+    "action": "--color-action"
+  },
+  "extensions": {
+    "breakpoints": {
+      "mobile": 768,
+      "compactNavigation": 1120
+    },
+    "motion": {
+      "reveal": "1500ms",
+      "curve": "cubic-bezier(.28,.71,0,.98)",
+      "hoverPause": false,
+      "imageMasks": "20% width / 40% height to full size, scrub",
+      "entry": "curved SVG, 1200ms power2.inOut, desktop",
+      "cta": "30deg to 10deg, scale .9, 400ms brand curve; measured bite mask",
+      "visiblePauseControl": false,
+      "backgroundSpeedsPxPerSecond": {
+        "forward": 168,
+        "reverse": 98.8235294118
+      },
+      "backgroundDuration": "computed from half track width, after font load and resize",
+      "preloader": {
+        "oncePerTab": true,
+        "exit": "logo to header + curved 1200ms wipe",
+        "minimumMs": 1050,
+        "assetWaitCapMs": 1800,
+        "failSafeMs": 3600,
+        "interruptible": true,
+        "reducedMotion": "skip"
+      },
+      "orderCTA": {
+        "image": "static 1.3, 3:4; source No_Anim",
+        "pathOffset": [
+          220,
+          20
+        ],
+        "button": "upright order variant, .6 to1.2 expo.out1500ms"
+      },
+      "scroll": {
+        "referenceVersion": "Lenis 1.0.42",
+        "installedVersion": "Lenis 1.3.27",
+        "lerp": 0.1,
+        "duration": "unset",
+        "ticker": "GSAP with lagSmoothing(0)",
+        "touch": "native"
+      }
+    },
+    "typographyMeta": {
+      "families": [
+        "Apfel Grotezk",
+        "Arial"
+      ],
+      "status": "proposal",
+      "accentCandidate": "Rosaline (not installed)",
+      "displayWeight": 800,
+      "sectionSize": "6rem / 3rem mobile"
+    },
+    "colorMeta": {
+      "report": "audit/design-contrast.json",
+      "normalTextMinimum": 4.5,
+      "actionTextContrast": 4.82,
+      "scope": "solid token pairs; photo contrast requires visual review"
+    },
+    "review": {
+      "route": "/galeria/",
+      "heroConcepts": "/galeria/hero/signature/",
+      "heroConceptStatus": "Three generated concepts; user selection pending; default hero unchanged",
+      "developmentOnly": true,
+      "photoPairs": 7,
+      "data": "src/dev/photography.ts",
+      "secondPass": "docs/design/referencia-bernice/segunda-pasada/IMPLEMENTACION.md",
+      "cta": "docs/design/referencia-bernice/segunda-pasada/CTA-MEDIDO.md"
+    },
+    "featured": {
+      "maxWidth": "none",
+      "minimumHeight": 0,
+      "gap": "5%",
+      "gutter": "4vw",
+      "separator": "Cakes by Yas isotipo; no four-point stars"
+    },
+    "heroPhotography": {
+      "registry": "src/data/hero.ts",
+      "asset": "assets/photography/yas-day-hero-v2.png",
+      "source": "assets/source-instagram/DVY7b_UkX74.jpg",
+      "direction": "Ivory editorial birthday scene with an external coral ribbon",
+      "nativeSize": [1672, 941],
+      "status": "integrated-local-preview; product fidelity pending commercial review",
+      "record": "assets/photography/generation-record-hero-v2.json"
+    },
+    "brand": {
+      "source": "assets/brand-delivery-2026-10-31",
+      "registry": "src/data/brand.ts",
+      "format": "SVG paths",
+      "status": "user-supplied",
+      "inverse": "ivory lettering on dark footer"
+    }
+  },
+  "components": [
+    {
+      "name": "Button",
+      "file": "src/components/Button.astro",
+      "variants": [
+        "primary",
+        "outline",
+        "circle",
+        "order"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled"
+      ],
+      "edgeCase": "Long Spanish label"
+    },
+    {
+      "name": "CakeCard",
+      "file": "src/components/CakeCard.astro",
+      "variants": [
+        "arch",
+        "regular"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "edgeCase": "Tall topper fully visible"
+    },
+    {
+      "name": "Navigation",
+      "file": "src/components/Navigation.astro",
+      "variants": [
+        "desktop",
+        "compact"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "keyboard focus"
+      ],
+      "edgeCase": "Navigation at 1120px"
+    },
+    {
+      "name": "Catalog",
+      "file": "src/components/Catalog.astro",
+      "states": [
+        "all",
+        "filtered",
+        "transition",
+        "no-js"
+      ],
+      "edgeCase": "Product with multiple size prices"
+    },
+    {
+      "name": "Preloader",
+      "file": "src/components/Preloader.astro",
+      "states": [
+        "first-visit",
+        "session-skip",
+        "input-skip",
+        "reduced-motion",
+        "timeout"
+      ],
+      "edgeCase": "slow hero image does not trap entry"
+    }
+  ]
+}

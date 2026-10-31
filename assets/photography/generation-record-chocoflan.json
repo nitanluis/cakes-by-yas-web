@@ -1,0 +1,7 @@
+{
+  "name": "chocoflan-heart-v1",
+  "source": "references/previous-site/public/images/real_cakes/real_cake_9.jpeg",
+  "prompt": "Precise photographic environment edit. Image 1 is the protected product: retain this exact heart-shaped two-layer chocoflan, dark real chocolate cake bottom, thick pale custard upper layer, caramel-brown top, same piped dulce de leche heart border and exactly the same three strawberry halves in the same positions. Preserve original cake proportions, small custard pores, moist crumb, irregular piping, strawberry seeds, original viewing angle and simple white plate with caramel pooling. Do not add any topper or text. Image 2 is ONLY the shared photographic environment reference: seamless warm ivory with a subtle blush undertone, matching matte tabletop, large diffuse upper-left softbox, restrained right fill, natural soft contact shadow. Replace grey curtain/domestic setting and unnecessary surrounding props only. Keep the cake complete and the simple plate visible with comfortable breathing room, portrait 4:5 professional food photograph. No redesign, extra decorations, artificial flawless textures, CGI polish, exaggerated sharpness or fake bokeh; keep a believable handmade real dessert. Do not borrow any objects from image 2.",
+  "status": "candidate-from-historical-reference-needs-commercial-review",
+  "output": "assets/photography/chocoflan-heart-v1.png"
+}

@@ -1,0 +1,49 @@
+---
+import { getImage } from 'astro:assets';
+import { heroImage, heroAlt } from '../data/hero';
+import Navigation from '../components/Navigation.astro';
+import { copy } from '../data/copy';
+import type { Locale } from '../data/catalog';
+import { brand } from '../data/brand';
+import Preloader from '../components/Preloader.astro';
+import { sitePath } from '../shared/site-path';
+import '../styles/global.css';
+import '../styles/reference-motion.css';
+import '../styles/brand-intro.css';
+interface Props { locale: Locale; title: string; description: string; gallery?: boolean; entry?: boolean; bare?: boolean; intro?: boolean; }
+const { locale, title, description, gallery = false, entry = false, bare = false, intro = false } = Astro.props;
+const site = Astro.site;
+const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true' && !!site && !gallery;
+const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
+const social = await getImage({ src: heroImage, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 85 });
+const imageUrl = site ? new URL(social.src, site).href : social.src;
+---
+<!doctype html>
+<html lang={locale} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title><meta name="description" content={description} />
+    <meta name="robots" content={indexable ? 'index,follow' : 'noindex,nofollow'} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {site && !gallery && <><link rel="alternate" hreflang="en" href={new URL(sitePath('en/'), site).href} /><link rel="alternate" hreflang="es" href={new URL(sitePath('es/'), site).href} /><link rel="alternate" hreflang="x-default" href={new URL(sitePath(), site).href} /></>}
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /><meta property="og:locale" content={locale === 'es' ? 'es_US' : 'en_US'} />
+    {canonical && <meta property="og:url" content={canonical} />}<meta property="og:image" content={imageUrl} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={heroAlt[locale]} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={imageUrl} />
+    <link rel="icon" type="image/svg+xml" href={brand.mark} /><link rel="icon" type="image/png" sizes="32x32" href={brand.favicon} /><link rel="apple-touch-icon" sizes="180x180" href={brand.touchIcon} />
+    <link rel="preload" href={brand.logo} as="image" type="image/svg+xml" />
+    {intro && <script is:inline src={sitePath("brand/intro-boot.js")} data-preview={String(import.meta.env.DEV)}></script>}
+    <link rel="preload" href={sitePath("fonts/ApfelGrotezk-Mittel.woff2")} as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+  </head>
+  <body data-language-entry={entry ? 'true' : undefined}>
+    <a class="skip-link" href="#main">{copy[locale].skip}</a>
+    {!bare && <Navigation locale={locale} anchorBase={gallery ? sitePath(`${locale}/`) : ''} />}
+    {intro && <Preloader />}
+    <slot />
+    <div class="page-wipe" aria-hidden="true" data-page-wipe><span></span></div>
+    <script>
+      import '../scripts/main';
+    </script>
+  </body>
+</html>

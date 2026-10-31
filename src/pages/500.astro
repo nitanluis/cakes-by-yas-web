@@ -1,0 +1,8 @@
+---
+import { sitePath } from '../shared/site-path';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { whatsapp } from '../data/catalog';
+import { brand } from '../data/brand';
+---
+<Layout locale="en" title="Something went wrong — Cakes by Yas" description="Contact Yas directly while we sort things out." bare><main id="main" class="error-page section"><a href={sitePath("en/")} class="error-brand"><img src={brand.logo} width={brand.width} height={brand.height} alt="Cakes by Yas" /></a><h1 class="display-title">Let’s try again.</h1><p>You can still reach Yas directly.</p><p lang="es">Puedes contactar directamente con Yas.</p><Button href={whatsapp('en')}>WhatsApp</Button></main></Layout>

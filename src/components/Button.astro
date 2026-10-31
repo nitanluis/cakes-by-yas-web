@@ -1,0 +1,6 @@
+---
+interface Props { href?: string; variant?: 'primary' | 'outline' | 'circle' | 'order'; label?: string; class?: string; disabled?: boolean; }
+const { href, variant = 'primary', label, class: className = '', disabled = false } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+<Tag href={href} class:list={['button', `button--${variant}`, className]} aria-label={label} disabled={href ? undefined : disabled} type={href ? undefined : 'button'}><span class="button__label"><slot /></span></Tag>

@@ -1,0 +1,445 @@
+{
+  "date": "2026-10-31T01:16:55.393Z",
+  "items": [
+    {
+      "class": "Hero_Wrapper Parallax_Wrapper",
+      "rect": {
+        "h": 1255,
+        "w": 2548,
+        "x": 0,
+        "y": 0
+      },
+      "selector": ".Hero_Wrapper",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "balto, sans-serif",
+        "font-size": "17.6px",
+        "font-weight": "400",
+        "gap": "normal",
+        "line-height": "15.84px",
+        "mask-image": "none",
+        "padding": "102.4px",
+        "position": "relative",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "ABakingLoveAffair\n        \n          \n            \n              Indulge"
+    },
+    {
+      "class": "Hero_Heading Cool_Text_Anim Words",
+      "rect": {
+        "h": 552.9375,
+        "w": 1991.734375,
+        "x": 102.390625,
+        "y": 599.671875
+      },
+      "selector": ".Hero_Heading",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(248, 248, 242)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "307.2px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "184.32px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "ABakingLoveAffair"
+    },
+    {
+      "class": "Hero_Float_Inner",
+      "rect": {
+        "h": 301.80621337890625,
+        "w": 301.80615234375,
+        "x": 2053.690673828125,
+        "y": 780.6593627929688
+      },
+      "selector": ".Hero_Float_Inner",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgb(255, 167, 238)",
+        "border-radius": "10000px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(248, 248, 242)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "32px",
+        "font-weight": "400",
+        "gap": "normal",
+        "line-height": "28.8px",
+        "mask-image": "none",
+        "padding": "48px",
+        "position": "relative",
+        "transform": "matrix(0.866025, 0.5, -0.5, 0.866025, 0, 0)",
+        "transition": "0.4s cubic-bezier(0.28, 0.71, 0, 0.98)"
+      },
+      "text": "Indulge"
+    },
+    {
+      "class": "Hero_Float Parallax_Hero_Front",
+      "rect": {
+        "h": 220.9375,
+        "w": 220.9375,
+        "x": 2094.125,
+        "y": 821.09375
+      },
+      "selector": ".Hero_Float",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "balto, sans-serif",
+        "font-size": "17.6px",
+        "font-weight": "400",
+        "gap": "normal",
+        "line-height": "15.84px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "absolute",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "Indulge"
+    },
+    {
+      "class": "overlay",
+      "rect": {
+        "h": 1255,
+        "w": 2548,
+        "x": 0,
+        "y": 0
+      },
+      "selector": ".overlay",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0.5)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "balto, sans-serif",
+        "font-size": "17.6px",
+        "font-weight": "400",
+        "gap": "normal",
+        "line-height": "15.84px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "fixed",
+        "transform": "none",
+        "transition": "opacity 1s cubic-bezier(0.28, 0.71, 0, 0.98)"
+      },
+      "text": ""
+    },
+    {
+      "class": "SectionTitle Cool_Text_Anim Lines",
+      "rect": {
+        "h": 141.875,
+        "w": 1389.921875,
+        "x": 102.390625,
+        "y": 1337
+      },
+      "selector": ".SectionTitle",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(20, 124, 152)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "67.2px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "60.48px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "Goodfoodshouldbothcomfortandnourishthesoul."
+    },
+    {
+      "class": "SectionTitle Cool_Text_Anim Lines",
+      "rect": {
+        "h": 100.78125,
+        "w": 2548,
+        "x": 0,
+        "y": 3344.796875
+      },
+      "selector": ".SectionTitle",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "96px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "86.4px",
+        "mask-image": "none",
+        "padding": "0px 16px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "Thebestthingsinlifearesweet"
+    },
+    {
+      "class": "SectionTitle Cool_Text_Anim Lines Hidden",
+      "rect": {
+        "h": 0,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      "selector": ".SectionTitle",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "96px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "86.4px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "Celebratewithcake"
+    },
+    {
+      "class": "Product_Item_Title",
+      "rect": {
+        "h": 21.59375,
+        "w": 566.953125,
+        "x": 170.390625,
+        "y": 2580.703125
+      },
+      "selector": ".Product_Item_Title",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "24px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "21.6px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "Birthday Cookie"
+    },
+    {
+      "class": "Product_Item_Title",
+      "rect": {
+        "h": 21.59375,
+        "w": 566.953125,
+        "x": 990.53125,
+        "y": 2580.703125
+      },
+      "selector": ".Product_Item_Title",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "24px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "21.6px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "S'mores Cookie"
+    },
+    {
+      "class": "Product_Item_Title",
+      "rect": {
+        "h": 21.59375,
+        "w": 566.953125,
+        "x": 1810.65625,
+        "y": 2580.703125
+      },
+      "selector": ".Product_Item_Title",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "24px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "21.6px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "White & Dark Chocolate Chunk Cookie"
+    },
+    {
+      "class": "Product_Item_Title",
+      "rect": {
+        "h": 21.59375,
+        "w": 609.234375,
+        "x": 102.390625,
+        "y": 5046.078125
+      },
+      "selector": ".Product_Item_Title",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "24px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "21.6px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "White & Dark Chocolate Chunk Cookie"
+    },
+    {
+      "class": "Product_Item_Title",
+      "rect": {
+        "h": 21.59375,
+        "w": 609.234375,
+        "x": 969.375,
+        "y": 5046.078125
+      },
+      "selector": ".Product_Item_Title",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "24px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "21.6px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "Birthday Cookie"
+    },
+    {
+      "class": "Product_Item_Title",
+      "rect": {
+        "h": 21.59375,
+        "w": 609.234375,
+        "x": 1836.359375,
+        "y": 5046.078125
+      },
+      "selector": ".Product_Item_Title",
+      "style": {
+        "animation-duration": "0s",
+        "animation-name": "none",
+        "animation-play-state": "running",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "border-radius": "0px",
+        "border-width": "0px",
+        "clip-path": "none",
+        "color": "rgb(17, 34, 41)",
+        "font-family": "\"Apfel Grotezk\", sans-serif",
+        "font-size": "24px",
+        "font-weight": "700",
+        "gap": "normal",
+        "line-height": "21.6px",
+        "mask-image": "none",
+        "padding": "0px",
+        "position": "static",
+        "transform": "none",
+        "transition": "all"
+      },
+      "text": "S'mores Cookie"
+    }
+  ],
+  "scrollY": 0,
+  "url": "https://bernicebakery.com/",
+  "viewport": {
+    "height": 1255,
+    "width": 2560
+  }
+}

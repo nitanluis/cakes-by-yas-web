@@ -1,0 +1,110 @@
+/* Raw design values. Brand: user, 2026-10-30. Scale, arches and motion:
+   docs/design/referencia-bernice/SISTEMA-MEDIDO.md. Warm neutrals and body
+   family are translated proposals. Media thresholds are repeated only inside
+   @media because native CSS custom properties cannot parameterize queries. */
+:root {
+  --brand-coral: #ea677d;
+  --brand-rose: #f8a8b1;
+  --ivory: #faf5ee;
+  --paper: #fffdf9;
+  --ink-rgb: 53 33 39;
+  --night: #261c20;
+  --night-panel: #38272e;
+  --cream-rgb: 250 245 238;
+  --alpha-soft: .12;
+  --alpha-strong: .28;
+  --alpha-hero: .12;
+  --alpha-overlay: .55;
+  --alpha-muted: .72;
+  --font-display: 'Apfel Grotezk', sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --weight-normal: 400;
+  --weight-medium: 600;
+  --weight-display: 800;
+  --text-section-display: 6rem;
+  --text-step: 7rem;
+  --dur-tabs: 800ms;
+  --dur-loop: 40000ms;
+  --delay-stagger: 150ms;
+  --photo-paper: #ead8ca;
+  --radius-exit: 5rem;
+  --cta-circle-size: 14rem;
+  --cta-circle-mobile: 10rem;
+  --text-xs: .75rem;
+  --text-sm: .875rem;
+  --text-base: 1.1rem;
+  --text-nav: 1.2rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2rem;
+  --text-title: 4.2rem;
+  --text-marquee: 8rem;
+  --text-hero: 12vw;
+  --text-hero-mobile: 17vw;
+  --text-wordmark: 17.5vw; /* Translated from 20cqw to fit the longer brand name. */
+  --line-tight: .9;
+  --line-body: 1.4;
+  --line-heading: .96;
+  --tracking-tight: -.045em;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 5rem;
+  --space-10: 6rem;
+  --space-11: 8rem;
+  --section-y: 50px;
+  --gutter: 4vw;
+  --header-h: 100px;
+  --logo-w: 190px;
+  --logo-h: 86px;
+  --intro-logo-w: 34rem;
+  --footer-logo-w: 56rem;
+  --text-order-curve: 2.5rem;
+  --border-order: 5px;
+  --dur-intro-logo: 850ms;
+  --dur-intro-min: 1050ms;
+  --dur-intro-assets: 1800ms;
+  --dur-intro-handoff: 1050ms;
+  --dur-intro-failsafe: 3600ms;
+  --touch: 48px;
+  --border-thin: 1px;
+  --border-normal: 2px;
+  --border-heavy: 4px;
+  --radius-small: 10px;
+  --radius-image: 1.5rem;
+  --radius-panel: 3rem;
+  --radius-arch: 500px;
+  --radius-pill: 999px;
+  --break-nav: 1120px;
+  --break-mobile: 768px;
+  --mobile-root: 14px;
+  --content-max: 1800px;
+  --copy-max: 52rem;
+  --hero-min: 680px;
+  --hero-photo-height: 56.22vw;
+  --dialog-max: 1100px;
+  --image-max: 560px;
+  --dur-fast: 200ms;
+  --dur-hover: 400ms;
+  --dur-image: 500ms;
+  --dur-mask: 750ms;
+  --dur-line: 1200ms;
+  --dur-reveal: 1500ms;
+  --delay-reveal: 300ms;
+  --dur-marquee: 20000ms;
+  --dur-marquee-reverse: 34000ms;
+  /* Bernice live measurement: 6720 / 2 / 20 and / 34, CSS pixels per second. */
+  --marquee-speed-forward: 168;
+  --marquee-speed-reverse: 98.8235294118;
+  --dur-ribbon: 40000ms;
+  /* Lenis 1.0.42 source defaults: continuous damping, no fixed duration. */
+  --scroll-lerp: .1;
+  --ease-brand: cubic-bezier(.28,.71,0,.98);
+}
+@font-face { font-family: 'Apfel Grotezk'; src: url('/fonts/ApfelGrotezk-Mittel.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Apfel Grotezk'; src: url('/fonts/ApfelGrotezk-Fett.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Apfel Grotezk'; src: url('/fonts/ApfelGrotezk-Satt.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+references/previous-site/.git/
+references/
+audit/
+.impeccable/review/
+docs/brand/*.zip
+docs/design/referencia-bernice/source-styles/
+docs/design/referencia-bernice/raw/
+docs/design/referencia-bernice/**/*.png
+docs/design/referencia-bernice/**/*source.js
+730397787_17932372584324579_2870309195470870455_n.jpg
