@@ -12,14 +12,9 @@
 .button::before { inset: auto; width: 220%; aspect-ratio: 1; left: var(--mouse-x,50%); top: var(--mouse-y,50%); transform: translate(-50%,-50%) scale(0); transform-origin: center; }
 .button:hover::before { transform: translate(-50%,-50%) scale(1); }
 .intro { padding-bottom: var(--space-7); }
-.featured-section { min-height: 0; display: block; padding-block: var(--space-5) var(--space-7); isolation: isolate; }
+.featured-section { min-height: 0; display: block; padding-block: var(--space-5) var(--space-7); isolation: isolate; overflow: clip; }
 .section-heading { width: 100%; }
-.featured-bands { position: absolute; width: 120%; left: -10%; top: 50%; transform: translateY(-50%) rotate(-10deg); z-index: -1; }
-.featured-bands .marquee { position: relative; width: 100%; margin: var(--space-6) 0; transform: none; color: var(--color-text); }
-.marquee--outline { -webkit-text-stroke: var(--border-thin) var(--color-text); color: transparent !important; }
 .featured-grid { width: 100%; max-width: none; padding-block: var(--space-6); gap: 5%; grid-template-columns: repeat(3,minmax(0,1fr)); }
-.featured-bands .marquee > div { animation-duration: var(--marquee-duration,var(--dur-marquee)); animation-play-state: paused; }
-.featured-bands .marquee[data-marquee-ready] > div { animation-play-state: running; }
 .cake-card { text-align: left; }
 .cake-card--arch { border-color: var(--color-action); border-width: var(--border-normal); border-radius: var(--radius-arch) var(--radius-arch) var(--radius-panel) var(--radius-panel); }
 .cake-card--arch .cake-card__photo { aspect-ratio: 4 / 5; }
@@ -91,8 +86,6 @@
  .menu-section .display-title,.custom-intro .display-title,.order-feature > .display-title { font-size: var(--space-7); }
  .featured-section { min-height: 0; }
  .featured-grid { grid-template-columns: 1fr; gap: var(--space-6); }
- .featured-bands { width: 140%; left: -20%; }
- .featured-bands .marquee { font-size: var(--text-marquee); }
  .cake-card--arch { padding: var(--space-6); }
  .arches__image { --arch-height: 60vw; }
  .arches__image--tall { --arch-height: 75vw; }

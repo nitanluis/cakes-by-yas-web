@@ -19,6 +19,8 @@ Contenido: `src/data/catalog.ts` y `src/data/copy.ts`. Requisitos: `PRODUCT.md`.
 
 El navbar usa el gesto «Sello artesanal» sobre el isotipo original. La entrada «Firma de crema» aparece una vez por pestaña; `?intro=signature` permite repetirla durante la revisión. Ambos respetan el movimiento reducido.
 
+El fondo de destacados usa «Doble firma»: dos líneas próximas con frases sólidas y de contorno, desplazamiento continuo en sentidos contrarios y adaptación al idioma. Continúa sin scroll y durante hover/foco; se pausa fuera de pantalla, con pestaña oculta o movimiento reducido. Sin JavaScript queda estático.
+
 `npm run build` comprueba barreras, documentación, tipos y artefacto. `npm run flujos` valida la evidencia guardada por CUA; no abre un navegador ni sustituye una nueva revisión. Las capturas deben mirarse: geometría y axe no juzgan el acabado.
 
 `node scripts/verify-live.mjs https://nitanluis.github.io/cakes-by-yas-web/` comprueba la URL publicada, idiomas, errores404, exclusión de la galería, metadata, imagen social y recursos. Guarda el resultado en audit, excluido de Git. Primera comprobación:15/15 correctas.

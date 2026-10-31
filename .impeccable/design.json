@@ -63,11 +63,20 @@
       "entry": "curved SVG, 1200ms power2.inOut, desktop",
       "cta": "30deg to 10deg, scale .9, 400ms brand curve; measured bite mask",
       "visiblePauseControl": false,
-      "backgroundSpeedsPxPerSecond": {
-        "forward": 168,
-        "reverse": 98.8235294118
+      "featuredBackdrop": {
+        "direction": "Doble firma",
+        "source": "official tagline plus localized celebration phrase",
+        "rows": 2,
+        "solidAndOutline": "alternating phrases within each row",
+        "rowGap": 0,
+        "fontSize": "clamp(7rem,16vw,20rem)",
+        "opacity": 0.72,
+        "driver": "continuous linear opposite loops, including without scroll and during hover/focus",
+        "speedPxPerSecond": { "forward": 36, "reverse": 28 },
+        "duration": "sequence width divided by travel speed, recalculated after font load and resize",
+        "pausedWhen": ["outside viewport", "document hidden", "reduced motion"],
+        "reducedMotion": "static typography"
       },
-      "backgroundDuration": "computed from half track width, after font load and resize",
       "preloader": {
         "oncePerTab": true,
         "exit": "logo to header + curved 1200ms wipe",
@@ -177,6 +186,12 @@
         "focus-visible"
       ],
       "edgeCase": "Tall topper fully visible"
+    },
+    {
+      "name": "FeaturedBackdrop",
+      "file": "src/components/FeaturedBackdrop.astro",
+      "states": ["continuous", "hover-focus-running", "offscreen-paused", "reduced-motion", "no-js"],
+      "edgeCase": "long localized phrase and seamless loop at different viewport widths"
     },
     {
       "name": "Navigation",

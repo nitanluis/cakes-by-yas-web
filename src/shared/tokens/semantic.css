@@ -15,6 +15,9 @@
   --color-veil: rgb(var(--ink-rgb) / var(--alpha-overlay));
   --font-heading: var(--font-display);
   --font-copy: var(--font-body);
+  --text-featured-backdrop: var(--featured-type-size);
+  --motion-featured-forward: var(--featured-type-speed-forward);
+  --motion-featured-reverse: var(--featured-type-speed-reverse);
   --layout-gutter: var(--gutter);
   --layout-section: var(--section-y);
 }

@@ -6,6 +6,7 @@ import Layout from '../layouts/Layout.astro';
 import ScrollSignature from './icons/ScrollSignature.astro';
 import Button from './Button.astro';
 import CakeCard from './CakeCard.astro';
+import FeaturedBackdrop from './FeaturedBackdrop.astro';
 import Catalog from './Catalog.astro';
 import Decor from './icons/Decor.astro';
 import { copy } from '../data/copy';
@@ -31,7 +32,7 @@ const description = locale === 'es' ? 'Pasteles personalizados, tres leches, fla
     <section class="section intro" aria-labelledby="intro-title"><h2 id="intro-title" aria-label={t.intro.replaceAll("\n"," ")} class="display-title" data-reveal>{breakLines(t.intro).map(line => <span>{line}</span>)}</h2><div data-reveal><p class="large-copy">{t.introCopy}</p><a class="text-link" href="#menu">{t.nav[1]} </a></div></section>
     <section class="featured-section" id="cakes" aria-labelledby="featured-title">
       <div class="section-heading"><p class="eyebrow" id="featured-title">{t.featured}</p></div>
-      <div class="featured-bands" aria-hidden="true">{Array.from({length:4}, (_,i) => <div class:list={['marquee', {'marquee--outline':i%2===0,'marquee--reverse':i%2===0}]}><div>{Array.from({length:8},()=><span>{t.marquee}</span>)}</div></div>)}</div>
+      <FeaturedBackdrop locale={locale} />
       <div class="featured-grid section">{creations.slice(0, 3).map(cake => <CakeCard cake={cake} locale={locale} arch />)}</div>
     </section>
     <section class="custom-intro section"><h2 class="display-title" data-reveal>{t.custom}</h2></section>

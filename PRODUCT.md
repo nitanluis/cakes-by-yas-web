@@ -16,7 +16,7 @@ Se está recuperando el contexto de un intento anterior. Este documento distingu
 - [VERIFIED: conversación, 2026-10-30] Al usuario le gusta el logo mostrado: es fiel a la identidad que busca. Se conserva su dirección y se mejora su calidad; no ha pedido cambiar de identidad.
 - Fuente histórica: `nitanluis/cakes-by-yas`, rama `main`, commit `62004aeff556afc4ec3a5426fec5b4e5684ace96`.
 - Copia local de consulta: `references/previous-site/`. Es la implementación histórica de referencia; no es una elección técnica para la nueva versión.
-- Alcance, idiomas, público principal, objetivo inicial y responsables confirmados. Se adoptó Astro estático para una primera preview local ya implementada; no está desplegada.
+- Alcance, idiomas, público principal, objetivo inicial y responsables confirmados. Astro estático implementado; preview de revisión publicada en https://nitanluis.github.io/cakes-by-yas-web/. El alojamiento comercial final y el dominio siguen pendientes.
 
 ## Definición actual confirmada por el negocio
 

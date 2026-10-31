@@ -53,6 +53,10 @@ Enlace real para navegar/contactar, botón nativo para cambiar estado. Variantes
 
 Imagen con dimensiones, nombre y categoría comprobables; enlace/botón para ampliar y consultar. Variantes arch y regular; sin precio asociado a una foto de diseño personalizado cuando no existe cotización. Galería con ambas variantes y velas/topper completos; fallback propio de imagen ausente pendiente. Archivo `src/components/CakeCard.astro`.
 
+### FeaturedBackdrop
+
+«Doble firma», primera dirección elegida por el usuario tras revisar el monograma. Dos líneas altas y próximas, con frases sólidas y en contorno dentro de cada línea. Lema oficial y frase de celebración localizada, detrás de tarjetas opacas. Movimiento continuo en sentidos contrarios, también sin scroll y durante hover/foco. Estados estáticos sin JS o con movimiento reducido. Archivo `src/components/FeaturedBackdrop.astro`; muestra en `/galeria/#featured-background`.
+
 ### Navigation
 
 Menú de escritorio y diálogo compacto con foco inicial, Escape, retorno al disparador, bloqueo del fondo y enlaces reales. Selector de idioma conserva ruta cuando existe. Archivo `src/components/Navigation.astro`.
@@ -63,7 +67,7 @@ Menú completo y precios en fuente única; filtros mejorados con JS, todo dispon
 
 ## Motion
 
-GSAP y ScrollTrigger de la misma versión, Lenis solo en escritorio con movimiento permitido. Tiempos de origen: palabras 1.5s expo.out, líneas y wipe 1.2s; imágenes .5s; marquesinas 20/34s y arcos 40s; curva CSS (.28,.71,0,.98). El revelado nunca oculta contenido antes de que el módulo haya inicializado. Las cintas y bandas continúan al hover/foco, por petición explícita del usuario; se pausan con pestaña oculta o preferencia de movimiento reducido. El usuario pidió retirar el control visible. Sin parallax ni loops con movimiento reducido. La primera preview puede implementar progresivamente el catálogo de efectos; el informe de origen no acredita que todos estén ya construidos.
+GSAP y ScrollTrigger de la misma versión, Lenis solo en escritorio con movimiento permitido. Tiempos de origen: palabras1.5s expo.out, líneas y wipe1.2s; imágenes.5s; cinta de arcos40s; curva CSS(.28,.71,0,.98). El fondo de destacados «Doble firma» se mueve continuamente en sentidos opuestos a36/28px/s; no depende del scroll ni se detiene al hover/foco. El revelado nunca oculta contenido antes de que el módulo haya inicializado. La cinta continúa al hover/foco por petición explícita del usuario; se pausa con pestaña oculta o preferencia de movimiento reducido. El usuario pidió retirar el control visible. Sin parallax ni loops con movimiento reducido. El informe de origen documenta la referencia, no la implementación actual de cada detalle.
 
 **The Motion Access Rule**: sin animación o sin JavaScript se puede leer y consultar todo el catálogo.
 
@@ -95,7 +99,7 @@ Corrección óptica posterior: botones sin flechas repetidas; círculo sin aro n
 
 ## Ajuste de ritmo y separadores
 
-Se retiró la altura mínima 132vh y el centrado vertical de destacados. La introducción termina con 3rem de padding y las tarjetas ocupan el ancho disponible con gutter 4vw, sin el límite 1800px. Fondo: velocidad real medida 168px/s y 98.823529px/s en sentido inverso; la duración se calcula desde media tira, también al cambiar idioma, fuente o tamaño. No confundir duración igual con velocidad igual.
+Se retiró la altura mínima132vh y el centrado vertical de destacados. La introducción termina con3rem de padding y las tarjetas ocupan el ancho disponible con gutter4vw, sin el límite1800px. Las cuatro bandas originales usaban168/98.823529px/s, medidas en Bernice. Tras probar «Y monumental», el usuario eligió «Doble firma»: dos líneas más altas y cercanas, con sólido/contorno dentro de cada una y desplazamiento continuo36/28px/s.
 
 Por instrucción del usuario, no hay botón de pausa ni estrellas de cuatro puntas. La cinta utiliza el isotipo de Cakes by Yas como separador; los pasos, nodos circulares. La preferencia de movimiento reducido y la pausa por pestaña oculta siguen activas. Evidencia nueva en `.impeccable/review/featured-v3/`.
 
@@ -146,3 +150,15 @@ Navigation usa la mecánica medida en Bernice: círculo desde la esquina inferio
 La cortina se dimensiona para cubrir la diagonal en formatos próximos al cuadrado; la proporción120% del lado mayor dejaba esquinas visibles en1120×900. El círculo queda contenido sin crear scrollbar, y solo la lista de navegación puede desplazarse si falta altura. Al recrear Lenis por cambio de breakpoint, un diálogo abierto conserva detenido el scroll del fondo.
 
 BrandArtwork reutiliza los tres paths entregados, sin sustituir el lettering por una fuente. El hover elegido se revisa en `/galeria/#logo-gestures`; el trazo de crema queda reservado a la entrada. La indicación de scroll usa una curva de crema y texto breve; tres ciclos y reposo. CakeCard sustituye la pastilla «View photo» por una esquina coral de ampliación: cuatro esquinas de encuadre y texto que se descubre en hover/foco; visible con tacto. Ninguna flecha adicional.
+
+### Fondo anterior de destacados · Y monumental · histórico
+
+Se elige la cuarta dirección de la comparación, por delegación del usuario. El fondo utiliza una sola copia del isotipo entregado, sin lettering ni lema. Opacidad28% del coral original, tamaño88vw con máximo1120px en escritorio y160vw en móvil, recortado dentro de la sección. No cambia la geometría ni los CTA de CakeCard. El fondo no recibe eventos ni participa en el árbol accesible.
+
+GSAP utiliza la preferencia compartida y su contexto existente: giro−6→2grados, xPercent−3→3 y traslación vertical calculada con las dimensiones reales de sección/isotipo. La distancia incluye la pila móvil; ScrollTrigger recalcula al refrescar o cambiar de breakpoint. El único control temporal es el scroll, sin ticker propio, bucles de CSS ni respuesta al hover. Sin JS se muestra estático; movimiento reducido revierte la animación y conserva la firma sin giro. Recursos y rutas se resuelven desde `src/data/brand.ts` para funcionar también bajo el prefijo de GitHub Pages.
+
+### Fondo vigente de destacados · Doble firma
+
+El usuario pidió movimiento visible incluso sin scroll y eligió la primera dirección. FeaturedBackdrop muestra dos líneas con altura tipográfica clamp(7rem,16vw,20rem), line-height.9 y gap0, inclinadas−6grados. En cada línea se intercalan frases sólidas y de contorno2px; opacidad72% sobre el marfil, tarjetas opacas por delante. Primera línea: «MAKE IT / A YAS DAY.»; segunda: «CELEBRA / CON YAS.» o «CELEBRATE / WITH YAS.» según idioma. No hay isotipo de fondo.
+
+Cada pista duplica dos secuencias idénticas, con tres frases por secuencia y el mismo espacio final. La animación lineal recorre exactamente media pista, en sentidos opuestos. Su duración se calcula como ancho de secuencia/velocidad36 o28px/s; ResizeObserver y fonts.ready recalculan sin asumir que traducir conserva longitud. IntersectionObserver pausa fuera de pantalla; la clase compartida page-hidden pausa con pestaña oculta y motionPreference se conserva como fuente única de preferencia. Hover/foco no cambian el estado. En móvil, las mismas dos líneas se mantienen a media pantalla dentro de su sección mediante sticky y overflow:clip, para acompañar las tres tarjetas sin duplicar bandas. Sin JS queda estático y sin preferencia de movimiento se inicializa el bucle. No hay control visible de pausa por petición previa del usuario.

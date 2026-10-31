@@ -45,25 +45,28 @@ motionPreference.addEventListener('change', () => brandHovers.forEach(brand => b
 let lenis: Lenis | undefined;
 let motionContext: gsap.Context | undefined;
 let ticker: ((time: number) => void) | undefined;
-// Match source travel speed, not its duration: translated text has a longer loop.
-const marqueeRows = [...document.querySelectorAll<HTMLElement>('.featured-bands .marquee')];
-function syncMarqueeSpeeds() {
-  const tokens = getComputedStyle(root);
-  marqueeRows.forEach(row => {
+
+// Two equal sequences make a seamless loop; travel speed stays stable across fonts/locales.
+const featuredBackdrops = [...document.querySelectorAll<HTMLElement>('[data-featured-backdrop]')];
+function syncFeaturedTracks() {
+  featuredBackdrops.forEach(backdrop => backdrop.querySelectorAll<HTMLElement>('[data-featured-row]').forEach(row => {
     const track = row.firstElementChild as HTMLElement;
-    const key = row.classList.contains('marquee--reverse') ? '--marquee-speed-reverse' : '--marquee-speed-forward';
-    const speed = Number.parseFloat(tokens.getPropertyValue(key));
-    if (track && speed > 0) {
-      track.style.setProperty('--marquee-duration', `${track.scrollWidth / 2 / speed}s`);
-      row.dataset.marqueeReady = 'true';
+    const sequence = track.firstElementChild as HTMLElement;
+    const speed = Number.parseFloat(getComputedStyle(row).getPropertyValue('--featured-travel-speed'));
+    if (sequence.offsetWidth > 0 && speed > 0) {
+      track.style.setProperty('--featured-loop-duration', `${sequence.offsetWidth / speed}s`);
+      row.toggleAttribute('data-motion-ready', !reducedMotion());
     }
-  });
+  }));
 }
-syncMarqueeSpeeds();
-document.fonts.ready.then(syncMarqueeSpeeds);
-const marqueeSizes = new ResizeObserver(syncMarqueeSpeeds);
-marqueeRows.forEach(row => marqueeSizes.observe(row.firstElementChild!));
-window.addEventListener('pagehide', () => marqueeSizes.disconnect());
+const featuredSizes = new ResizeObserver(syncFeaturedTracks);
+featuredBackdrops.forEach(backdrop => backdrop.querySelectorAll<HTMLElement>('.featured-backdrop__sequence').forEach(sequence => featuredSizes.observe(sequence)));
+const featuredVisibility = new IntersectionObserver(entries => entries.forEach(entry => entry.target.toggleAttribute('data-in-view', entry.isIntersecting)));
+featuredBackdrops.forEach(backdrop => featuredVisibility.observe(backdrop));
+syncFeaturedTracks();
+document.fonts.ready.then(syncFeaturedTracks);
+motionPreference.addEventListener('change', syncFeaturedTracks);
+window.addEventListener('pagehide', () => { featuredSizes.disconnect(); featuredVisibility.disconnect(); });
 
 let splits: SplitText[] = [];
 let heroReveals: gsap.core.Tween[] = [];
@@ -120,8 +123,6 @@ function setupMotion() {
     document.querySelectorAll<HTMLElement>('.cake-card--arch').forEach((card,index) => {
       gsap.from(card, { y: 90, rotation: window.innerWidth > 768 ? (index % 2 ? 4 : -4) : 0, duration: seconds('--dur-reveal'), ease: 'expo.out', scrollTrigger: { trigger: card, start: 'top 95%', once: true }, clearProps: 'all' });
     });
-    const bands = document.querySelector('.featured-bands');
-    if (bands) gsap.to(bands, { yPercent: 30, ease: 'none', scrollTrigger: { trigger: '.featured-section', start: 'top bottom', end: 'bottom top', scrub: true } });
     // Fixed photo frames behind a growing arch mask reproduce the source geometry.
     document.querySelectorAll<HTMLElement>('[data-arch-window]').forEach(element => {
       gsap.fromTo(element.querySelector('.arches__mask'), { width: '20%', height: '40%' }, { width: '100%', height: '100%', ease: 'power1.out', scrollTrigger: { trigger: '.arches', start: 'top bottom', end: 'bottom center+=200', scrub: true } });

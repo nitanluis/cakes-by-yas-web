@@ -1,0 +1,70 @@
+---
+import { copy } from '../data/copy';
+import type { Locale } from '../data/catalog';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+---
+<div class="featured-backdrop" data-featured-backdrop aria-hidden="true">
+  <div class="featured-backdrop__lines">
+    {copy[locale].featuredType.map((line, index) =>
+      <div class:list={['featured-backdrop__row', { 'featured-backdrop__row--reverse': index === 1 }]} data-featured-row>
+        <div class="featured-backdrop__track">
+          {[0, 1].map(() => <div class="featured-backdrop__sequence">
+            {[0, 1, 2].map(() => <span class="featured-backdrop__phrase">
+              {line.outlineFirst ? <><span class="featured-backdrop__outline">{line.outline}</span>{' '}<span>{line.solid}</span></> : <><span>{line.solid}</span>{' '}<span class="featured-backdrop__outline">{line.outline}</span></>}
+            </span>)}
+          </div>)}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+<style>
+  .featured-backdrop {
+    --featured-type-size: var(--text-featured-backdrop);
+    --featured-type-color: var(--color-text);
+    --featured-type-opacity: var(--alpha-muted);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    overflow: clip;
+    pointer-events: none;
+    user-select: none;
+  }
+  .featured-backdrop__lines {
+    position: absolute;
+    width: 120%;
+    left: -10%;
+    top: 50%;
+    transform: translateY(-50%) rotate(-6deg);
+    color: var(--featured-type-color);
+    opacity: var(--featured-type-opacity);
+    font-family: var(--font-heading);
+    font-size: var(--featured-type-size);
+    font-weight: var(--weight-display);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--line-tight);
+    text-transform: uppercase;
+  }
+  .featured-backdrop__row { --featured-travel-speed: var(--motion-featured-forward); white-space: nowrap; }
+  .featured-backdrop__row--reverse { --featured-travel-speed: var(--motion-featured-reverse); }
+  .featured-backdrop__track {
+    display: flex;
+    width: max-content;
+    animation: featured-type-drift var(--featured-loop-duration, var(--dur-marquee)) linear infinite;
+    animation-play-state: paused;
+  }
+  .featured-backdrop__sequence { display: flex; flex: none; }
+  .featured-backdrop__phrase { flex: none; padding-right: .3em; }
+  .featured-backdrop__outline { color: var(--featured-type-color); -webkit-text-fill-color: transparent; -webkit-text-stroke: var(--border-normal) var(--featured-type-color); }
+  .featured-backdrop__row--reverse .featured-backdrop__track { animation-direction: reverse; }
+  [data-in-view] [data-motion-ready] .featured-backdrop__track { animation-play-state: running; }
+  @keyframes featured-type-drift { to { transform: translateX(-50%); } }
+  @media (max-width: 768px) {
+    .featured-backdrop__lines { position: sticky; top: 50svh; left: auto; margin-left: -10%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .featured-backdrop__track { animation: none !important; }
+  }
+</style>

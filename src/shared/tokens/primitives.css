@@ -111,6 +111,10 @@
   /* Bernice live measurement: 6720 / 2 / 20 and / 34, CSS pixels per second. */
   --marquee-speed-forward: 168;
   --marquee-speed-reverse: 98.8235294118;
+  /* Doble firma chosen by the user, 2026-10-31: tall, close lines and calm continuous travel. */
+  --featured-type-size: clamp(7rem, 16vw, 20rem);
+  --featured-type-speed-forward: 36;
+  --featured-type-speed-reverse: 28;
   --dur-ribbon: 40000ms;
   /* Lenis 1.0.42 source defaults: continuous damping, no fixed duration. */
   --scroll-lerp: .1;

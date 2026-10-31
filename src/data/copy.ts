@@ -7,7 +7,10 @@ export const copy = {
     introCopy: 'The candles, the first slice, the happy faces around the table. We make custom birthday cakes and desserts for the moments you want to remember.',
     featured: 'Made for your birthday', custom: 'The sweetest part of your celebration.',
     customCopy: 'Choose a flavor, a filling and a design that feels like you. We’ll work out the details together.',
-    marquee: 'Made with care · Made to celebrate · ',
+    featuredType: [
+      { solid: 'MAKE IT', outline: 'A YAS DAY.', outlineFirst: false },
+      { solid: 'WITH YAS.', outline: 'CELEBRATE', outlineFirst: true },
+    ],
     menu: 'Something sweet\nfor everyone.', menuCopy: 'Birthday centerpiece or a table full of little favorites. Here’s our menu.',
     quote: 'Let’s talk details', from: 'From', dozen: 'per dozen', servings: 'servings',
     options: 'Filling options', priceNote: 'Menu prices are the starting point. Custom designs and your final quote are confirmed with Yas.',
@@ -36,7 +39,10 @@ export const copy = {
     introCopy: 'Las velas, el primer corte y las sonrisas alrededor de la mesa. Hacemos pasteles de cumpleaños y postres personalizados para esos momentos que quieres recordar.',
     featured: 'Hecho para tu cumpleaños', custom: 'El lado más dulce de tu celebración.',
     customCopy: 'Elige una masa, un relleno y un diseño que vaya contigo. Concretamos los detalles juntos.',
-    marquee: 'Hecho con cariño · Hecho para celebrar · ',
+    featuredType: [
+      { solid: 'MAKE IT', outline: 'A YAS DAY.', outlineFirst: false },
+      { solid: 'CON YAS.', outline: 'CELEBRA', outlineFirst: true },
+    ],
     menu: 'Algo dulce\npara todos.', menuCopy: 'El protagonista del cumpleaños o una mesa de pequeños favoritos. Este es nuestro menú.',
     quote: 'Hablemos de los detalles', from: 'Desde', dozen: 'por docena', servings: 'porciones',
     options: 'Opciones de relleno', priceNote: 'Estos precios son el punto de partida. Los diseños personalizados y la cotización final se confirman con Yas.',
