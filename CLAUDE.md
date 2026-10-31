@@ -47,6 +47,6 @@ La identidad pública usa los SVG entregados por el usuario el 2026-10-31, con u
 
 ## Coste y publicación
 
-Actualización2026-10-31: el usuario pide repositorio público `nitanluis/cakes-by-yas-web`, colaborador `Oscarmp7` y preview temporal mediante GitHub Pages. Cloudflare será el alojamiento final en otra fase. El despliegue se define en `.github/workflows/pages.yml`; URL prevista https://nitanluis.github.io/cakes-by-yas-web/. Confirmar estado del workflow antes de afirmar publicación. `BASE_PATH` permite subcarpeta en Pages y raíz en otro host; `PUBLIC_INDEXABLE=false` durante revisión.
+Actualización2026-10-31: repositorio público `nitanluis/cakes-by-yas-web`; invitación enviada a `Oscarmp7`, pendiente de aceptación al cerrar esta sesión. Preview temporal publicada y verificada en https://nitanluis.github.io/cakes-by-yas-web/:15/15 comprobaciones HTTP/recursos correctas. Cloudflare será el alojamiento final en otra fase. El despliegue se define en `.github/workflows/pages.yml`; build y publicación inicial completados en GitHub Actions. `BASE_PATH` permite subcarpeta en Pages y raíz en otro host; `PUBLIC_INDEXABLE=false` durante revisión. Scripts y resultados de auditoría local no deben confundirse con otra publicación posterior.
 
 Vercel es la preferencia para las pruebas. Hobby restringe el uso comercial; el plan y su gasto deben concretarse antes de desplegar. No hay dominio comprado ni servicios nuevos contratados.
