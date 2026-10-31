@@ -4,19 +4,20 @@ import { whatsapp, type Locale } from '../data/catalog';
 import Button from './Button.astro';
 import { brand } from '../data/brand';
 import { sitePath } from '../shared/site-path';
+import BrandArtwork from './icons/BrandArtwork.astro';
 interface Props { locale: Locale; anchorBase?: string; }
 const { locale, anchorBase = '' } = Astro.props;
 const t = copy[locale];
 const anchors = ['cakes', 'menu', 'celebrations', 'order'];
 ---
 <header class="site-header" data-header>
-  <a class="brand" href={sitePath(`${locale}/`)} aria-label="Cakes by Yas"><img src={brand.logo} width={brand.width} height={brand.height} alt="Cakes by Yas" /></a>
+  <a class="brand brand-hover" href={sitePath(`${locale}/`)} aria-label="Cakes by Yas" data-brand-hover><BrandArtwork id="navbar" variant="stamp" /></a>
   <nav class="desktop-nav" aria-label={locale === 'es' ? 'Principal' : 'Main'}>{t.nav.map((name, i) => <a href={`${anchorBase}#${anchors[i]}`}>{name}</a>)}</nav>
   <div class="header-actions"><a class="language" href={sitePath(`${locale === 'en' ? 'es' : 'en'}/`)} data-language lang={locale === 'en' ? 'es' : 'en'} aria-label={locale === 'en' ? 'Cambiar a español' : 'Switch to English'}>{locale === 'en' ? 'ES' : 'EN'}</a><a class="header-order" href={whatsapp(locale)}>WhatsApp</a><button class="menu-trigger" type="button" aria-label={t.openMenu} aria-controls="mobile-navigation" aria-expanded="false" data-menu-open><span></span><span></span></button></div>
 </header>
-<dialog class="nav-dialog" id="mobile-navigation" aria-label={t.openMenu} data-nav-dialog>
-  <div class="nav-dialog__top"><img class="nav-dialog__brand" src={brand.logo} width={brand.width} height={brand.height} alt="Cakes by Yas" /><button class="icon-button" aria-label={t.close} data-dialog-close>×</button></div>
-  <nav aria-label={locale === 'es' ? 'Principal móvil' : 'Mobile main'}>{t.nav.map((name, i) => <a href={`${anchorBase}#${anchors[i]}`}>{name}</a>)}</nav>
-  <Button href={whatsapp(locale)}>{t.order}</Button>
-  <p>{t.pickup}</p>
+<dialog class="nav-dialog" id="mobile-navigation" aria-label={t.openMenu} data-nav-dialog data-lenis-prevent>
+  <div class="nav-dialog__surface" data-nav-surface aria-hidden="true"></div>
+  <div class="nav-dialog__top" data-nav-content><img class="nav-dialog__brand" src={brand.inverseLogo} width={brand.width} height={brand.height} alt="Cakes by Yas" /><button class="icon-button" aria-label={t.close} data-dialog-close><span class="menu-cross" aria-hidden="true"></span></button></div>
+  <nav data-nav-content aria-label={locale === 'es' ? 'Principal móvil' : 'Mobile main'}>{t.nav.map((name, i) => <a href={`${anchorBase}#${anchors[i]}`}><span class="eyebrow" aria-hidden="true">0{i+1}</span><span>{name}</span></a>)}</nav>
+  <div class="nav-dialog__bottom" data-nav-content><Button href={whatsapp(locale)}>{t.order}</Button><p>{t.pickup}</p><p>Make it a Yas day.</p></div>
 </dialog>

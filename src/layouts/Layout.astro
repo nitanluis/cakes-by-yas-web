@@ -6,10 +6,13 @@ import { copy } from '../data/copy';
 import type { Locale } from '../data/catalog';
 import { brand } from '../data/brand';
 import Preloader from '../components/Preloader.astro';
+import ProductDialog from '../components/ProductDialog.astro';
 import { sitePath } from '../shared/site-path';
 import '../styles/global.css';
 import '../styles/reference-motion.css';
 import '../styles/brand-intro.css';
+import '../styles/brand-interactions.css'; // Shared signature and navigation.
+import '../styles/product-dialog.css'; // Product selection opens before the WhatsApp handoff.
 interface Props { locale: Locale; title: string; description: string; gallery?: boolean; entry?: boolean; bare?: boolean; intro?: boolean; }
 const { locale, title, description, gallery = false, entry = false, bare = false, intro = false } = Astro.props;
 const site = Astro.site;
@@ -32,7 +35,7 @@ const imageUrl = site ? new URL(social.src, site).href : social.src;
     <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={imageUrl} />
     <link rel="icon" type="image/svg+xml" href={brand.mark} /><link rel="icon" type="image/png" sizes="32x32" href={brand.favicon} /><link rel="apple-touch-icon" sizes="180x180" href={brand.touchIcon} />
     <link rel="preload" href={brand.logo} as="image" type="image/svg+xml" />
-    {intro && <script is:inline src={sitePath("brand/intro-boot.js")} data-preview={String(import.meta.env.DEV)}></script>}
+    {intro && <script is:inline src={sitePath("brand/intro-boot-v2.js")} data-preview={String(import.meta.env.DEV)}></script>}
     <link rel="preload" href={sitePath("fonts/ApfelGrotezk-Mittel.woff2")} as="font" type="font/woff2" crossorigin />
     <slot name="head" />
   </head>
@@ -41,6 +44,7 @@ const imageUrl = site ? new URL(social.src, site).href : social.src;
     {!bare && <Navigation locale={locale} anchorBase={gallery ? sitePath(`${locale}/`) : ''} />}
     {intro && <Preloader />}
     <slot />
+    {!bare && <ProductDialog locale={locale} />}
     <div class="page-wipe" aria-hidden="true" data-page-wipe><span></span></div>
     <script>
       import '../scripts/main';

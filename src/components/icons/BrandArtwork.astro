@@ -1,0 +1,36 @@
+---
+import source from '../../../assets/brand-delivery-2026-10-31/cakes-by-yas-logo-colores-marca.svg?raw';
+interface Props { id: string; intro?: boolean; variant?: 'piping' | 'stamp'; }
+const { id, intro = false, variant = 'stamp' } = Astro.props;
+const paths = [...source.matchAll(/<path\b[^>]*>/g)].map(match => {
+  const attrs = Object.fromEntries([...match[0].matchAll(/\s([\w-]+)="([^"]*)"/g)].map(a => [a[1], a[2]]));
+  return { ...attrs, d: attrs.d, id: attrs.id, rule: attrs['fill-rule'] === 'evenodd' ? 'evenodd' as const : 'nonzero' as const };
+});
+const mark = paths.find(p => p.id === 'isotipo')!;
+const letters = paths.find(p => p.id === 'lettering')!;
+const slogan = paths.find(p => p.id === 'slogan')!;
+---
+<svg class:list={['brand-art', {'brand-art--intro': intro}]} data-brand-art data-variant={variant} viewBox="12 6 1052 476" aria-hidden="true">
+  <defs>
+    <path id={`${id}-mark`} d={mark.d} fill-rule={mark.rule} />
+    <path id={`${id}-letters`} d={letters.d} fill-rule={letters.rule} />
+    <mask id={`${id}-piping`} maskUnits="userSpaceOnUse" x="0" y="0" width="480" height="500">
+      <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">
+        <path class="brand-art__stroke" data-piping-stroke pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="150" d="M88 90C80 150 195 160 220 205S280 255 326 277" />
+        <path class="brand-art__stroke" data-piping-stroke pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="160" d="M370 70C350 110 292 150 294 194S313 250 327 275" />
+        <path class="brand-art__stroke" data-piping-stroke pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-width="115" d="M325 268C386 356 261 401 209 401S140 348 183 321S256 307 224 335S181 357 198 365S265 406 255 454" />
+      </g>
+    </mask>
+    <clipPath id={`${id}-top`}><rect x="450" y="0" width="650" height="235" /></clipPath>
+    <clipPath id={`${id}-bottom`}><rect x="450" y="235" width="650" height="185" /></clipPath>
+  </defs>
+  <g class="brand-art__mark" data-brand-mark transform={intro ? 'translate(292.5 0)' : undefined}>
+    <use class="brand-art__solid" data-brand-solid href={`#${id}-mark`} />
+    <use class="brand-art__piped" data-brand-piped href={`#${id}-mark`} mask={`url(#${id}-piping)`} />
+  </g>
+  <g class="brand-art__words" data-brand-words>
+    <g clip-path={`url(#${id}-top)`}><use class="brand-art__row" data-brand-row href={`#${id}-letters`} /></g>
+    <g clip-path={`url(#${id}-bottom)`}><use class="brand-art__row" data-brand-row href={`#${id}-letters`} /></g>
+    <path class="brand-art__slogan" data-brand-slogan d={slogan.d} fill-rule={slogan.rule} />
+  </g>
+</svg>

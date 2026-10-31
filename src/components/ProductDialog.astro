@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import { productDetails } from '../data/product-details';
+import { fillings, whatsapp, type Locale } from '../data/catalog';
+import { copy } from '../data/copy';
+import Button from './Button.astro';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const es = locale === 'es';
+const t = copy[locale];
+---
+<dialog class="product-dialog" id="product-detail" data-product-dialog aria-label={es ? 'Personaliza tu selección' : 'Personalize your selection'} data-lenis-prevent>
+  <div class="product-dialog__bar"><span class="eyebrow">Cakes by Yas</span><button class="icon-button" type="button" data-dialog-close aria-label={t.close}>×</button></div>
+  {productDetails.map(product => <article class="product-detail" data-product-panel={product.id} hidden aria-labelledby={`detail-${product.id}`}>
+    <div class="product-detail__visual">{product.image ? <Image src={product.image} alt={product.alt?.[locale] || product.name[locale]} widths={[400,640,900]} sizes="(max-width:768px) 85vw,450px" format="webp" loading="lazy" /> : <div class="product-detail__lettering"><p class="eyebrow">Cakes by Yas · {t.madeToOrder}</p><span>{product.name[locale]}</span><p>{t.noPhoto}</p></div>}</div>
+    <div class="product-detail__content"><p class="eyebrow">{product.kind[locale]}</p><h2 id={`detail-${product.id}`}>{product.name[locale]}</h2>
+      <p class="product-detail__price">{product.price ? `$${product.price}${product.unit ? ` · ${t.dozen}` : ''}` : product.sizes ? `${t.from} $${product.sizes[0].price}` : t.design}</p>
+      {product.sizes && <ul class="sizes">{product.sizes.map(size=><li><span>{size.name[locale]} · {size.servings} {t.servings}</span><span>${size.price}</span></li>)}</ul>}
+      {product.filling && <fieldset class="product-fillings"><legend>{es ? 'Relleno para consultar' : 'A filling to ask about'}</legend><div class="product-fillings__choices">{fillings.map(filling=><label><input type="radio" name={`filling-${product.id}`} value={filling[locale]} data-product-filling data-consult-href={whatsapp(locale, product.name[locale], filling[locale])} /><span>{filling[locale]}</span></label>)}<label class="product-fillings__undecided"><input type="radio" name={`filling-${product.id}`} value="" checked data-product-filling data-consult-href={whatsapp(locale, product.name[locale])} /><span>{es ? 'Prefiero decidirlo con Yas' : 'I’ll decide with Yas'}</span></label></div></fieldset>}
+      <p class="product-detail__note">{product.filling ? (es ? 'La combinación, disponibilidad y cotización se confirman con Yas.' : 'Yas confirms the combination, availability and quote.') : t.priceNote}</p>
+      <p class="sr-only" role="status" data-product-status></p>
+      <Button href={whatsapp(locale, product.name[locale])} class="product-detail__consult">{es ? 'Continuar por WhatsApp' : 'Continue on WhatsApp'}</Button>
+      <p class="product-detail__pickup">{t.pickup}</p>
+    </div>
+  </article>)}
+</dialog>

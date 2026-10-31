@@ -71,9 +71,11 @@
       "preloader": {
         "oncePerTab": true,
         "exit": "logo to header + curved 1200ms wipe",
-        "minimumMs": 1050,
         "assetWaitCapMs": 1800,
-        "failSafeMs": 3600,
+        "failSafeMs": 6500,
+        "minimumMs": 3600,
+        "artDirection": "three piping masks, original lettering, hold, header handoff",
+        "replayQuery": "intro=signature",
         "interruptible": true,
         "reducedMotion": "skip"
       },
@@ -200,6 +202,18 @@
         "no-js"
       ],
       "edgeCase": "Product with multiple size prices"
+    },
+    {
+      "name": "BrandArtwork",
+      "file": "src/components/icons/BrandArtwork.astro",
+      "variants": ["stamp", "intro-piping"],
+      "states": ["default", "hover", "focus-visible", "reduced-motion"]
+    },
+    {
+      "name": "ProductDialog",
+      "file": "src/components/ProductDialog.astro",
+      "states": ["closed", "open", "filling-selected", "undecided", "no-js", "reduced-motion"],
+      "edgeCase": "Flan without fillings; unknown photo; stacked photo dialog; long filling name"
     },
     {
       "name": "Preloader",

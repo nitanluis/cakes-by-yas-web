@@ -15,6 +15,10 @@ Desarrollo: `http://127.0.0.1:4321/`. Mesa interna: `/galeria/`, excluida del bu
 
 Contenido: `src/data/catalog.ts` y `src/data/copy.ts`. Requisitos: `PRODUCT.md`. Diseño: `DESIGN.md`; estudio de Bernice: `docs/design/referencia-bernice/`. Fotos: `assets/photography/REVIEW.md`. Fuentes: `docs/design/typography/README.md`.
 
+«Ask Yas» abre el detalle del producto antes de continuar por WhatsApp. Las vistas se derivan de creaciones y catálogo en `src/data/product-details.ts`; la selección de relleno es opcional y solo se ofrece en los pasteles correspondientes. Sin JavaScript, los botones conservan el enlace directo de consulta. El contacto no confirma un pedido ni procesa pagos.
+
+El navbar usa el gesto «Sello artesanal» sobre el isotipo original. La entrada «Firma de crema» aparece una vez por pestaña; `?intro=signature` permite repetirla durante la revisión. Ambos respetan el movimiento reducido.
+
 `npm run build` comprueba barreras, documentación, tipos y artefacto. `npm run flujos` valida la evidencia guardada por CUA; no abre un navegador ni sustituye una nueva revisión. Las capturas deben mirarse: geometría y axe no juzgan el acabado.
 
 `node scripts/verify-live.mjs https://nitanluis.github.io/cakes-by-yas-web/` comprueba la URL publicada, idiomas, errores404, exclusión de la galería, metadata, imagen social y recursos. Guarda el resultado en audit, excluido de Git. Primera comprobación:15/15 correctas.

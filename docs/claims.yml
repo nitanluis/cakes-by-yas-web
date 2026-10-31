@@ -1,4 +1,19 @@
 # Claims locales; no afirman despliegue ni resultados de producción.
+- claim: "El navbar usa el sello artesanal y la entrada puede repetirse durante la revisión."
+  doc: README.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'variant="stamp"' -LiteralPath 'src/components/Navigation.astro') -and (Select-String -Quiet -SimpleMatch -Pattern 'brand-stamp' -LiteralPath 'src/styles/brand-interactions.css') -and (Select-String -Quiet -SimpleMatch -Pattern 'signature' -LiteralPath 'public/brand/intro-boot-v2.js')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "La consulta de producto abre una vista nativa y conserva los enlaces de WhatsApp como alternativa."
+  doc: DESIGN.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern '<dialog' -LiteralPath 'src/components/ProductDialog.astro') -and (Select-String -Quiet -SimpleMatch -Pattern 'data-product={product}' -LiteralPath 'src/components/Button.astro') -and (Select-String -Quiet -SimpleMatch -Pattern 'productPanels.size !== 15' -LiteralPath 'scripts/check-built.mjs')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "La entrada de marca conserva un límite de seguridad y permite repetición explícita."
+  doc: DESIGN.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern '--dur-intro-failsafe: 6500ms' -LiteralPath 'src/shared/tokens/primitives.css') -and (Select-String -Quiet -SimpleMatch -Pattern 'signature' -LiteralPath 'public/brand/intro-boot-v2.js')) { exit 0 } else { exit 1 }
+  expect: pass
+
 - claim: "La nueva aplicación usa Astro 7.4.4."
   doc: CLAUDE.md
   assert: if ((Get-Content -Raw -LiteralPath 'package.json' | ConvertFrom-Json).dependencies.astro -eq '7.4.4') { exit 0 } else { exit 1 }

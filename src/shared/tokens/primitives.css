@@ -65,11 +65,20 @@
   --footer-logo-w: 56rem;
   --text-order-curve: 2.5rem;
   --border-order: 5px;
-  --dur-intro-logo: 850ms;
-  --dur-intro-min: 1050ms;
+  --dur-intro-logo: 1200ms;
+  --dur-intro-min: 3600ms;
   --dur-intro-assets: 1800ms;
-  --dur-intro-handoff: 1050ms;
-  --dur-intro-failsafe: 3600ms;
+  --dur-intro-handoff: 1000ms;
+  --dur-intro-failsafe: 6500ms;
+  /* Menu: Bernice drawer measured live, 2026-10-31. */
+  --dur-menu-surface: 800ms;
+  --dur-menu-content: 400ms;
+  --delay-menu-content: 600ms;
+  --delay-menu-exit: 400ms;
+  /* Approved Sello artesanal hover: restrained press of the original mark. */
+  --dur-brand-stamp: 700ms;
+  --brand-stamp-press: 3px;
+  --dur-scroll-cue: 2400ms;
   --touch: 48px;
   --border-thin: 1px;
   --border-normal: 2px;

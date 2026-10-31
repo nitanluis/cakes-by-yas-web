@@ -2,8 +2,7 @@
 html:is([data-brand-intro='pending'],[data-brand-intro='playing']) .brand-preloader { display: block; }
 .brand-preloader > svg { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--color-bg); overflow: visible; }
 .brand-preloader__lockup { position: absolute; left: 50%; top: 50%; width: min(var(--intro-logo-w),78vw); transform: translate(-50%,-50%); transform-origin: center; }
-.brand-preloader__reveal { clip-path: inset(100% 0 0); }
-.brand-preloader__reveal img { display: block; width: 100%; height: auto; }
+.brand-preloader__lockup > svg { display: block; width: 100%; height: auto; }
 @keyframes intro-failsafe { to { visibility: hidden; } }
 .brand img { height: auto; max-height: var(--logo-h); }
 .nav-dialog__brand { width: var(--logo-w); height: auto; max-height: var(--logo-h); object-fit: contain; }

@@ -31,6 +31,17 @@ const updateHeader = () => header?.classList.toggle('is-scrolled', window.scroll
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 
+// Let each stamp finish even when the pointer leaves; never repeat while held over the logo.
+const brandHovers = [...document.querySelectorAll<HTMLElement>('[data-brand-hover]')];
+brandHovers.forEach(brand => {
+  const play = () => { if (!reducedMotion()) brand.classList.add('is-stamping'); };
+  brand.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') play(); });
+  brand.addEventListener('focus', () => { if (brand.matches(':focus-visible')) play(); });
+  if (brand.tagName === 'BUTTON') brand.addEventListener('click', play);
+  brand.addEventListener('animationend', event => { if (event.animationName === 'brand-stamp') brand.classList.remove('is-stamping'); });
+});
+motionPreference.addEventListener('change', () => brandHovers.forEach(brand => brand.classList.remove('is-stamping')));
+
 let lenis: Lenis | undefined;
 let motionContext: gsap.Context | undefined;
 let ticker: ((time: number) => void) | undefined;
@@ -138,7 +149,7 @@ window.addEventListener('resize', () => {
 });
 document.addEventListener('visibilitychange', () => {
   root.classList.toggle('page-hidden', document.hidden);
-  if (document.hidden) lenis?.stop(); else if (!reducedMotion()) lenis?.start();
+  if (document.hidden || document.querySelector('dialog[open]')) lenis?.stop(); else if (!reducedMotion()) lenis?.start();
 });
 
 const dialogTriggers = new WeakMap<HTMLDialogElement, HTMLElement>();
@@ -152,18 +163,19 @@ function openDialog(dialog: HTMLDialogElement, trigger: HTMLElement) {
 document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => {
   dialog.addEventListener('keydown', event => {
     if (event.key !== 'Tab') return;
-    const items = [...dialog.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(item => item.getClientRects().length > 0);
+    const items = [...dialog.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(item => item.getClientRects().length > 0);
     const first = items[0], last = items.at(-1);
     if (!first || !last) { event.preventDefault(); return; }
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
-  dialog.querySelectorAll<HTMLElement>('[data-dialog-close]').forEach(button => button.addEventListener('click', () => dialog.close()));
+  dialog.querySelectorAll<HTMLElement>('[data-dialog-close]').forEach(button => button.addEventListener('click', () => dialog.hasAttribute('data-nav-dialog') ? closeNavigation() : dialog.close()));
   dialog.addEventListener('close', () => {
-    document.body.classList.remove('dialog-open');
-    document.querySelector('[data-menu-open]')?.setAttribute('aria-expanded', 'false');
+    const anotherDialog = !!document.querySelector('dialog[open]');
+    document.body.classList.toggle('dialog-open', anotherDialog);
+    if (dialog.hasAttribute('data-nav-dialog')) document.querySelector('[data-menu-open]')?.setAttribute('aria-expanded', 'false');
     dialogTriggers.get(dialog)?.focus();
-    if (!reducedMotion()) lenis?.start();
+    if (!anotherDialog && !reducedMotion()) lenis?.start();
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
@@ -172,18 +184,85 @@ document.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => {
   });
 });
 const navDialog = document.querySelector<HTMLDialogElement>('[data-nav-dialog]');
+let menuFrame = 0;
+let menuExit: gsap.core.Tween | undefined;
+function closeNavigation(after?: () => void) {
+  if (!navDialog?.open || navDialog.dataset.state === 'closing') return;
+  cancelAnimationFrame(menuFrame);
+  const finish = () => {
+    // The existing close handler restores the trigger first; the destination then receives focus.
+    if (after) navDialog.addEventListener('close', after, { once: true });
+    navDialog.close(); navDialog.dataset.state = 'closed';
+  };
+  navDialog.dataset.state = 'closing';
+  if (reducedMotion()) return finish();
+  menuExit?.kill();
+  menuExit = gsap.delayedCall(seconds('--delay-menu-exit') + seconds('--dur-menu-surface'), finish);
+}
 document.querySelector<HTMLElement>('[data-menu-open]')?.addEventListener('click', event => {
   if (!navDialog) return;
   const trigger = event.currentTarget as HTMLElement;
   trigger.setAttribute('aria-expanded', 'true');
+  menuExit?.kill();
+  navDialog.dataset.state = 'closed';
   openDialog(navDialog, trigger);
+  // Establish the collapsed frame before CSS starts the measured circular reveal.
+  getComputedStyle(navDialog.querySelector('[data-nav-surface]')!).transform;
+  menuFrame = requestAnimationFrame(() => { navDialog.dataset.state = 'open'; });
 });
-navDialog?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navDialog.close()));
-window.addEventListener('resize', () => { if (window.innerWidth > 1120 && navDialog?.open) navDialog.close(); });
+navDialog?.addEventListener('cancel', event => { event.preventDefault(); closeNavigation(); });
+navDialog?.querySelectorAll<HTMLAnchorElement>('a').forEach(link => link.addEventListener('click', event => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const destination = new URL(link.href);
+  if (destination.origin !== location.origin || !destination.hash) { closeNavigation(); return; }
+  event.preventDefault();
+  closeNavigation(() => {
+    if (destination.pathname !== location.pathname) { location.assign(link.href); return; }
+    const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)));
+    history.pushState(null, '', destination.hash);
+    if (target) {
+      if (lenis && !reducedMotion()) lenis.scrollTo(target); else target.scrollIntoView({ behavior: reducedMotion() ? 'instant' : 'smooth' });
+      const heading = target.querySelector<HTMLElement>('h2,h3');
+      if (heading) { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
+    }
+  });
+}));
+window.addEventListener('resize', () => { if (window.innerWidth > 1120 && navDialog?.open) { cancelAnimationFrame(menuFrame); menuExit?.kill(); navDialog.close(); } });
+motionPreference.addEventListener('change', () => {
+  if (reducedMotion() && navDialog?.open) {
+    menuExit?.kill(); cancelAnimationFrame(menuFrame);
+    if (navDialog.dataset.state === 'closing') navDialog.close(); else navDialog.dataset.state = 'open';
+  }
+});
 
 const photoDialog = document.querySelector<HTMLDialogElement>('[data-photo-dialog]');
+const productDialog = document.querySelector<HTMLDialogElement>('[data-product-dialog]');
+document.querySelectorAll<HTMLAnchorElement>('a[data-product]').forEach(link => link.addEventListener('click', event => {
+  if (!productDialog || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const panels = [...productDialog.querySelectorAll<HTMLElement>('[data-product-panel]')];
+  const selected = panels.find(panel => panel.dataset.productPanel === link.dataset.product);
+  if (!selected) return;
+  event.preventDefault();
+  panels.forEach(panel => { panel.hidden = panel !== selected; });
+  productDialog.setAttribute('aria-labelledby', selected.getAttribute('aria-labelledby')!);
+  gsap.killTweensOf(productDialog); gsap.set(productDialog, { clearProps: 'opacity,transform' });
+  productDialog.scrollTop = 0;
+  openDialog(productDialog, link);
+  if (!reducedMotion()) gsap.from(productDialog, { y: 20, opacity: 0, scale: .985, duration: seconds('--dur-hover'), ease: 'power3.out', clearProps: 'all' });
+}));
+productDialog?.querySelectorAll<HTMLElement>('[data-product-panel]').forEach(panel => {
+  panel.querySelectorAll<HTMLInputElement>('[data-product-filling]').forEach(input => input.addEventListener('change', () => {
+    const action = panel.querySelector<HTMLAnchorElement>('.product-detail__consult');
+    if (!input.checked || !action || !input.dataset.consultHref) return;
+    action.href = input.dataset.consultHref;
+    const status = panel.querySelector<HTMLElement>('[data-product-status]');
+    if (status) status.textContent = input.value ? `${locale === 'es' ? 'Relleno para consultar' : 'Filling to ask about'}: ${input.value}.` : (locale === 'es' ? 'Puedes decidir el relleno con Yas.' : 'You can decide on a filling with Yas.');
+  }));
+});
+productDialog?.addEventListener('close', () => { gsap.killTweensOf(productDialog); gsap.set(productDialog, { clearProps: 'opacity,transform' }); });
 document.querySelectorAll<HTMLAnchorElement>('[data-photo]').forEach(link => link.addEventListener('click', event => {
   if (!photoDialog) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   event.preventDefault();
   photoDialog.querySelectorAll<HTMLElement>('[data-photo-panel]').forEach(panel => { panel.hidden = panel.dataset.photoPanel !== link.dataset.photo; });
   openDialog(photoDialog, link);

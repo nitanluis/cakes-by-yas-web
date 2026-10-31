@@ -14,6 +14,14 @@ for (const locale of ['en', 'es']) {
   if (!html.includes(`lang="${locale}"`)) throw Error(`Wrong document language: ${locale}`);
   if (/pecca/i.test(html)) throw Error('Rejected product found');
   if ((html.match(/class="menu-item"/g) || []).length !== 10) throw Error(`Incomplete menu: ${locale}`);
+  const productPanels = new Map([...html.matchAll(/<article\b[^>]*data-product-panel="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g)].map(m => [m[1],m[2]]));
+  if (productPanels.size !== 15) throw Error(`Incomplete product views: ${locale}`);
+  for (const [,id] of html.matchAll(/data-product="([^"]+)"/g)) if (!productPanels.has(id)) throw Error(`Product action without detail: ${id}`);
+  for (const [id,panel] of productPanels) {
+    const choices = panel.includes('data-product-filling');
+    if ((id.endsWith('-flan') || id.includes('chocoflan') || id.includes('mini-') || id.includes('mousse')) && choices) throw Error(`Fillings offered on an unrelated product: ${id}`);
+    if (choices && !/value=""[^>]*checked/.test(panel)) throw Error(`A filling was selected for the visitor: ${id}`);
+  }
   if (!html.includes('noindex,nofollow') && !process.env.PUBLIC_INDEXABLE) throw Error('Preview indexing gate absent');
   const image = html.match(/property="og:image" content="([^"]+)"/)?.[1];
   if (!image) throw Error('Missing social image');

@@ -1,6 +1,6 @@
 ---
-interface Props { href?: string; variant?: 'primary' | 'outline' | 'circle' | 'order'; label?: string; class?: string; disabled?: boolean; }
-const { href, variant = 'primary', label, class: className = '', disabled = false } = Astro.props;
+interface Props { href?: string; variant?: 'primary' | 'outline' | 'circle' | 'order'; label?: string; class?: string; disabled?: boolean; product?: string; }
+const { href, variant = 'primary', label, class: className = '', disabled = false, product } = Astro.props;
 const Tag = href ? 'a' : 'button';
 ---
-<Tag href={href} class:list={['button', `button--${variant}`, className]} aria-label={label} disabled={href ? undefined : disabled} type={href ? undefined : 'button'}><span class="button__label"><slot /></span></Tag>
+<Tag href={href} class:list={['button', `button--${variant}`, className]} aria-label={label} data-product={product} aria-haspopup={product ? 'dialog' : undefined} aria-controls={product ? 'product-detail' : undefined} disabled={href ? undefined : disabled} type={href ? undefined : 'button'}><span class="button__label"><slot /></span></Tag>

@@ -1,10 +1,10 @@
 ---
-import { brand } from '../data/brand';
 import Decor from './icons/Decor.astro';
+import BrandArtwork from './icons/BrandArtwork.astro';
 ---
 <div class="brand-preloader" data-preloader aria-hidden="true">
   <Decor variant="entry" />
   <div class="brand-preloader__lockup" data-preloader-lockup>
-    <div class="brand-preloader__reveal" data-preloader-reveal><img src={brand.logo} width={brand.width} height={brand.height} alt="" data-preloader-logo /></div>
+    <BrandArtwork id="intro" intro variant="piping" />
   </div>
 </div>

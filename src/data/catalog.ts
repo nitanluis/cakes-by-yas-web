@@ -9,10 +9,10 @@ export type Locale = 'en' | 'es';
 export type Localized = Record<Locale, string>;
 export const locales: Locale[] = ['en', 'es'];
 export const business = { phone: '18626680038', instagram: 'https://www.instagram.com/cakes_byyas_/' };
-export function whatsapp(locale: Locale, product?: string) {
+export function whatsapp(locale: Locale, product?: string, filling?: string) {
   const message = locale === 'es'
-    ? `¡Hola, Yas! Me gustaría consultar ${product ? `sobre ${product}` : 'un pedido'}.\nFecha:\nPersonas:\nMasa y relleno:\nIdea de diseño:`
-    : `Hi Yas! I'd love to ask about ${product || 'a cake order'}.\nDate:\nGuests:\nCake flavor and filling:\nDesign idea:`;
+    ? `¡Hola, Yas! Me gustaría consultar ${product ? `sobre ${product}` : 'un pedido'}.\nFecha:\nPersonas:\nMasa y relleno:${filling ? ` ${filling}` : ''}\nIdea de diseño:`
+    : `Hi Yas! I'd love to ask about ${product || 'a cake order'}.\nDate:\nGuests:\nCake flavor and filling:${filling ? ` ${filling}` : ''}\nDesign idea:`;
   return `https://wa.me/${business.phone}?text=${encodeURIComponent(message)}`;
 }
 export const creations = [
