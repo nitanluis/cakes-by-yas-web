@@ -8,6 +8,8 @@ import { startBrandIntro } from './preloader';
 import { sitePath } from '../shared/site-path';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+// Keep GSAP and the intro's real-time safety timers aligned after long frames on every viewport.
+gsap.ticker.lagSmoothing(0);
 if (import.meta.env.DEV && new URLSearchParams(location.search).has('audit')) import('./a11y-review');
 const root = document.documentElement;
 const locale = root.lang === 'es' ? 'es' : 'en';
@@ -70,7 +72,7 @@ function setupMotion() {
       lenis = new Lenis({ anchors: true, lerp: Number.parseFloat(getComputedStyle(root).getPropertyValue('--scroll-lerp')) });
       lenis.on('scroll', ScrollTrigger.update);
       ticker = time => lenis?.raf(time * 1000);
-      gsap.ticker.add(ticker); gsap.ticker.lagSmoothing(0);
+      gsap.ticker.add(ticker);
       if (hero) {
         const scroll = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
         gsap.to('[data-hero-media]', { yPercent: 70, ease: 'none', scrollTrigger: scroll });
