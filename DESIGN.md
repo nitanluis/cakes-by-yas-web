@@ -128,3 +128,5 @@ Comparación solo en desarrollo `/galeria/hero/signature/`, `/galeria/hero/first
 ### Paridad de tiempos en producción
 
 La minificación puede reescribir1200ms como1.2s sin cambiar el significado CSS. La lectura JS debe conservar la unidad: `src/shared/css-time.ts` interpreta ms y s; `motion.ts` usa esa única conversión para GSAP, delays y timers del preloader. `npm run check:motion` comprueba equivalencia en todos los tokens de duración y retraso, además de casos decimales/espacios y rechazo de valores sin unidad. No dividir siempre por1000: en el primer build publicado esto aceleraba las transiciones JS y activaba prematuramente el watchdog del preloader.
+
+El crecimiento del CTA inferior declara xPercent−50/yPercent50 y x/y0 explícitos en GSAP. Así conserva el centrado en porcentajes al cambiar de ancho, sin reutilizar una traslación calculada en píxeles con el tamaño anterior del botón. El recorrido de escala sigue siendo.6→1.2 con expo.out.

@@ -115,7 +115,10 @@ function setupMotion() {
     });
     const ringText = document.querySelector('[data-arch-type]');
     if (ringText) gsap.fromTo(ringText, { attr: { startOffset: 220 } }, { attr: { startOffset: 20 }, ease: 'none', scrollTrigger: { trigger: ringText.closest('svg'), start: 'top bottom+=40', end: 'bottom top', scrub: true } });
-    document.querySelectorAll<HTMLElement>('[data-grow]').forEach(element => gsap.to(element, { scale: 1.2, duration: seconds('--dur-reveal'), ease: 'expo.out', scrollTrigger: { trigger: element, start: 'top bottom', once: true } }));
+    document.querySelectorAll<HTMLElement>('[data-grow]').forEach(element => gsap.fromTo(element,
+      { x: 0, y: 0, xPercent: -50, yPercent: 50, scale: .6 },
+      { scale: 1.2, duration: seconds('--dur-reveal'), ease: 'expo.out', scrollTrigger: { trigger: element, start: 'top bottom', once: true } }
+    ));
     const steps = document.querySelectorAll('[data-step]');
     if (steps.length) gsap.from(steps, { y: 60, opacity: 0, stagger: .2, duration: seconds('--dur-line'), ease: 'expo.out', scrollTrigger: { trigger: '.process ol', start: 'top 90%', once: true }, clearProps: 'all' });
     const wave = document.querySelector('[data-wave]');
