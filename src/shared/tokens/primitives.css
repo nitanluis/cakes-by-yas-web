@@ -75,6 +75,8 @@
   --dur-menu-content: 400ms;
   --delay-menu-content: 600ms;
   --delay-menu-exit: 400ms;
+  /* A circular curtain must cover the viewport diagonal, including square tablets. */
+  --menu-curtain-size: max(150vw,150svh);
   /* Approved Sello artesanal hover: restrained press of the original mark. */
   --dur-brand-stamp: 700ms;
   --brand-stamp-press: 3px;

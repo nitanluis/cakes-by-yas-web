@@ -143,4 +143,6 @@ Hover de navbar: el usuario delegó la elección entre los tres bocetos y se apl
 
 Navigation usa la mecánica medida en Bernice: círculo desde la esquina inferior derecha, superficie800ms con curva de marca; contenido400ms después de600ms. Cierre: contenido400ms, después contracción800ms. Dialog nativo mantiene el fondo inerte y el foco contenido hasta terminar; Escape y enlaces ejecutan el cierre, después se devuelve el foco o se lleva a la sección elegida. En movimiento reducido el cierre es inmediato.
 
+La cortina se dimensiona para cubrir la diagonal en formatos próximos al cuadrado; la proporción120% del lado mayor dejaba esquinas visibles en1120×900. El círculo queda contenido sin crear scrollbar, y solo la lista de navegación puede desplazarse si falta altura. Al recrear Lenis por cambio de breakpoint, un diálogo abierto conserva detenido el scroll del fondo.
+
 BrandArtwork reutiliza los tres paths entregados, sin sustituir el lettering por una fuente. El hover elegido se revisa en `/galeria/#logo-gestures`; el trazo de crema queda reservado a la entrada. La indicación de scroll usa una curva de crema y texto breve; tres ciclos y reposo. CakeCard sustituye la pastilla «View photo» por una esquina coral de ampliación: cuatro esquinas de encuadre y texto que se descubre en hover/foco; visible con tacto. Ninguna flecha adicional.

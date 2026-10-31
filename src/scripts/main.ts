@@ -81,6 +81,7 @@ function setupMotion() {
     const hero = document.querySelector('.hero');
     if (window.innerWidth > 768) {
       lenis = new Lenis({ anchors: true, lerp: Number.parseFloat(getComputedStyle(root).getPropertyValue('--scroll-lerp')) });
+      if (document.hidden || document.querySelector('dialog[open]')) lenis.stop();
       lenis.on('scroll', ScrollTrigger.update);
       ticker = time => lenis?.raf(time * 1000);
       gsap.ticker.add(ticker);

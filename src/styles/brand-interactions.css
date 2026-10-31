@@ -12,10 +12,10 @@
 .hero__scroll svg { width: var(--space-6); height: var(--space-7); overflow: visible; }
 .hero__scroll path { stroke: currentColor; stroke-width: var(--border-normal); stroke-linecap: round; stroke-dasharray: 1; animation: scroll-icing var(--dur-scroll-cue) var(--ease-brand) 3; }
 @keyframes scroll-icing { 0% { stroke-dashoffset: 1; opacity: 0; } 35%,85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
-.nav-dialog { --menu-bg: var(--color-deep); --menu-text: var(--color-inverse); background: transparent; color: var(--menu-text); overflow: hidden; isolation: isolate; }
+.nav-dialog { --menu-bg: var(--color-deep); --menu-text: var(--color-inverse); --menu-surface-size: var(--menu-curtain-size); background: transparent; color: var(--menu-text); overflow: hidden; isolation: isolate; }
 .nav-dialog[open] { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-6); }
 .nav-dialog::backdrop { background: transparent; }
-.nav-dialog__surface { position: absolute; top: 50%; left: 50%; width: max(120vw,120svh); height: max(120vw,120svh); border-radius: 50%; background: var(--menu-bg); z-index: -1; transform: translate(-50%,-50%) scale(0); transform-origin: right bottom; transition: transform var(--dur-menu-surface) var(--ease-brand) var(--delay-menu-exit); }
+.nav-dialog__surface { position: absolute; top: 50%; left: 50%; width: var(--menu-surface-size); height: var(--menu-surface-size); border-radius: 50%; background: var(--menu-bg); z-index: -1; transform: translate(-50%,-50%) scale(0); transform-origin: right bottom; transition: transform var(--dur-menu-surface) var(--ease-brand) var(--delay-menu-exit); }
 .nav-dialog[data-state='open'] .nav-dialog__surface { transform: translate(-50%,-50%) scale(1); transition-delay: 0s; }
 .nav-dialog [data-nav-content] { opacity: 0; transform: translateY(var(--space-4)); transition: opacity var(--dur-menu-content) var(--ease-brand), transform var(--dur-menu-content) var(--ease-brand); }
 .nav-dialog[data-state='open'] [data-nav-content] { opacity: 1; transform: none; transition-delay: var(--delay-menu-content); }
