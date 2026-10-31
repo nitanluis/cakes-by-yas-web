@@ -124,3 +124,7 @@ El usuario pidió sustituir la imagen por una escena más memorable y coherente 
 El usuario no eligió el hero v2 y autorizó propuestas conceptuales sin limitarse a pasteles hechos por Yas. Tres direcciones, todavía sin selección: La firma (pastel coral), El primer corte (porción y dulce de leche) y El gesto (macro de crema coral). Recursos y prompts separados en `assets/photography/hero-concepts-2026-10-31/`; se identifican como conceptos generados, no como encargos reales ni contenido de catálogo.
 
 Comparación solo en desarrollo `/galeria/hero/signature/`, `/galeria/hero/first-slice/` y `/galeria/hero/cream-gesture/`. Importa Home real con una fuente fotográfica opcional, conserva el movimiento y omite el preloader para facilitar la comparación. El selector no publica ni cambia la portada; la fuente predeterminada en `src/data/hero.ts` sigue intacta. Ninguna ruta de galería se genera en producción.
+
+### Paridad de tiempos en producción
+
+La minificación puede reescribir1200ms como1.2s sin cambiar el significado CSS. La lectura JS debe conservar la unidad: `src/shared/css-time.ts` interpreta ms y s; `motion.ts` usa esa única conversión para GSAP, delays y timers del preloader. `npm run check:motion` comprueba equivalencia en todos los tokens de duración y retraso, además de casos decimales/espacios y rechazo de valores sin unidad. No dividir siempre por1000: en el primer build publicado esto aceleraba las transiciones JS y activaba prematuramente el watchdog del preloader.
