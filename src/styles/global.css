@@ -147,6 +147,8 @@ dialog::backdrop { background: var(--color-veil); }
 .footer-links nav { display: flex; flex-direction: column; align-items: start; gap: var(--space-3); font-size: var(--text-nav); font-family: var(--font-heading); }
 .footer-wordmark { white-space: nowrap; font-family: var(--font-heading); font-size: var(--text-wordmark); line-height: 1; letter-spacing: var(--tracking-tight); padding-top: var(--space-8); width: 100%; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-5); padding-top: var(--space-5); border-top: var(--border-thin) solid currentColor; font-size: var(--text-xs); }
+.footer-credit { display: inline-flex; align-items: center; gap: var(--space-2); font-size: inherit; }
+.footer-credit a { display: inline-flex; align-items: center; min-height: var(--touch); text-decoration: underline; text-underline-offset: .2em; }
 .site-footer :focus-visible { outline-color: var(--color-inverse); }
 .photo-dialog { width: 94%; max-width: var(--dialog-max); max-height: 92svh; border-radius: var(--radius-image); }
 .photo-dialog__top { margin-bottom: var(--space-4); }
