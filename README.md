@@ -2,7 +2,9 @@
 
 Catálogo bilingüe por encargo en Astro. Inglés `/en/`, español `/es/`; entrada `/` con preferencia manual/navegador e inglés de respaldo.
 
-Repositorio: https://github.com/nitanluis/cakes-by-yas-web. Preview de revisión publicada y comprobada el2026-10-31: https://nitanluis.github.io/cakes-by-yas-web/. GitHub Actions publica cada cambio en main que termina correctamente. No es el alojamiento definitivo del negocio; Cloudflare y el dominio quedan para una fase posterior.
+Producción: https://cakesbyyas.com/, alojada en Cloudflare Pages desde el 2026-11-01. `cakebyyas.com` y las variantes con `www` redirigen mediante301 al dominio principal en HTTPS, conservando ruta y parámetros. Registro y procedimiento en `docs/PRODUCTION.md`.
+
+Repositorio: https://github.com/nitanluis/cakes-by-yas-web. GitHub Actions publica la preview de revisión en https://nitanluis.github.io/cakes-by-yas-web/ después de cada push correcto a main. Esta preview conserva noindex. El proyecto de Cloudflare usa Direct Upload: un push a GitHub no actualiza automáticamente producción.
 
 ```powershell
 npm ci
@@ -27,7 +29,7 @@ El fondo de destacados usa «Doble firma»: dos líneas próximas con frases só
 
 GitHub Pages usa `SITE_URL=https://nitanluis.github.io` y `BASE_PATH=/cakes-by-yas-web/`. Las rutas internas pasan por `src/shared/site-path.ts`; los assets procesados usan el base de Astro. El workflow `.github/workflows/pages.yml` verifica y publica cada push a `main`. La preview conserva `PUBLIC_INDEXABLE=false`; no se conecta dominio ni se añade CNAME. La galería y el comparador de propuestas son solo de desarrollo.
 
-Para otro hosting, usar `BASE_PATH=/` y configurar el dominio real en `SITE_URL`. Antes de indexar, cerrar fotos/tipografía y revisar404, headers y metadata en el host final. Vercel también conserva una configuración de referencia. Las claims actuales se ejecutan con PowerShell; el workflow de build usa Windows. Revisar portabilidad de esa comprobación antes de activar un build Linux en Cloudflare.
+Producción se construye con `SITE_URL=https://cakesbyyas.com`, `BASE_PATH=/` y `PUBLIC_INDEXABLE=true`. `public/_headers` configura la seguridad y mantiene las direcciones temporales de Pages fuera del índice. El pie incluye el crédito de TheMonkeys. `node scripts/verify-production.mjs` comprueba el host comercial y sus redirecciones; `--public-dns` permite medir la resolución pública actual durante propagación, sin cambiar el DNS del equipo ni omitir validaciones TLS. Vercel conserva solo una configuración de referencia. Las claims se ejecutan con PowerShell; el build de CI usa Windows y Cloudflare recibe el artefacto estático ya construido.
 
 La dirección doméstica no se publica. Pedidos/pagos se concretan con Yas por mensajería. Las imágenes conceptuales se identifican como propuestas y no se atribuyen a encargos reales. Cambiar la imagen seleccionada en `src/data/hero.ts`; las propuestas están en `src/dev/hero-concepts.ts`.
 

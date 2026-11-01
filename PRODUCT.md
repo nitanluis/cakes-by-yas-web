@@ -1,6 +1,6 @@
 ---
 status: draft
-last-reviewed: 2026-10-30
+last-reviewed: 2026-11-01
 owner: "Usuario: diseño y mantenimiento; Yas: negocio, pedidos y publicación"
 revisit-trigger: "Respuestas del negocio; cambio de catálogo, pedidos, pagos, alcance o marca"
 ---
@@ -16,7 +16,7 @@ Se está recuperando el contexto de un intento anterior. Este documento distingu
 - [VERIFIED: conversación, 2026-10-30] Al usuario le gusta el logo mostrado: es fiel a la identidad que busca. Se conserva su dirección y se mejora su calidad; no ha pedido cambiar de identidad.
 - Fuente histórica: `nitanluis/cakes-by-yas`, rama `main`, commit `62004aeff556afc4ec3a5426fec5b4e5684ace96`.
 - Copia local de consulta: `references/previous-site/`. Es la implementación histórica de referencia; no es una elección técnica para la nueva versión.
-- Alcance, idiomas, público principal, objetivo inicial y responsables confirmados. Astro estático implementado; preview de revisión publicada en https://nitanluis.github.io/cakes-by-yas-web/. El alojamiento comercial final y el dominio siguen pendientes.
+- Alcance, idiomas, público principal, objetivo inicial y responsables confirmados. Astro estático implementado; producción en https://cakesbyyas.com/ sobre Cloudflare Pages y preview de revisión en https://nitanluis.github.io/cakes-by-yas-web/. El dominio singular redirige301 al plural. Procedimiento de publicación en `docs/PRODUCTION.md`.
 
 ## Definición actual confirmada por el negocio
 
@@ -36,11 +36,12 @@ Fuente: respuestas del usuario del 2026-10-30. Estas respuestas prevalecen sobre
 | Anticipación | Al menos 48 horas para pedidos simples; normalmente una semana para pedidos grandes. Disponibilidad y confirmación final a cargo de Yas. |
 | Organización | Se trabaja por orden de llegada y salida. No hay cifras de capacidad semanal confirmadas; no se ofrecerá disponibilidad automática. |
 | Teléfono | +1 862-668-0038, confirmado por el usuario. |
-| Dominio | Todavía no se ha comprado. Vercel es la preferencia para las pruebas. |
+| Dominio | El usuario compró `cakesbyyas.com` y `cakebyyas.com`. El plural es el principal; el singular y las variantes con `www` redirigen301 al principal en HTTPS, conservando ruta y parámetros. DNS Cloudflare; registro Namecheap. |
 | Mantenimiento | El usuario trabajará conmigo en diseño y manejo. Yas se encargará de publicar la web; la acción técnica exacta de publicación se concretará al preparar la entrega. |
 | Coste de la web | Se acepta un coste mensual si aporta una ventaja clara. No es una autorización para contratar un plan o incurrir en gastos. |
 | Logo | Conservar la identidad del logo mostrado y mejorar su calidad. |
 | Presentación | La versión anterior resultaba simple, poco fluida y genérica para el usuario. Fotos con tonos, fondos, estilos y calidad dispares perjudicaban la percepción premium. |
+| Crédito web | Footer bilingüe con «Hecha por TheMonkeys» / «Made by TheMonkeys» y enlace a `https://themonkeys.do`, solicitado el 2026-11-01. |
 
 ### Recorrido actual de un pedido
 

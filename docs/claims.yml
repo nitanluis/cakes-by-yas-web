@@ -1,4 +1,4 @@
-# Claims locales; no afirman despliegue ni resultados de producción.
+# Local barriers; live observations are dated in docs/PRODUCTION.md and reproduced separately.
 - claim: "El navbar usa el sello artesanal y la entrada puede repetirse durante la revisión."
   doc: README.md
   assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'variant="stamp"' -LiteralPath 'src/components/Navigation.astro') -and (Select-String -Quiet -SimpleMatch -Pattern 'brand-stamp' -LiteralPath 'src/styles/brand-interactions.css') -and (Select-String -Quiet -SimpleMatch -Pattern 'signature' -LiteralPath 'public/brand/intro-boot-v2.js')) { exit 0 } else { exit 1 }
@@ -42,4 +42,39 @@
 - claim: "Los originales y registros de generación se conservan separados."
   doc: assets/photography/REVIEW.md
   assert: if ((Test-Path -LiteralPath 'assets/source-instagram/downloads.json') -and (Test-Path -LiteralPath 'assets/photography/generation-records.json') -and (Test-Path -LiteralPath 'assets/photography/generation-records-batch-2.json')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "Los headers de Cloudflare mantienen las direcciones temporales en noindex."
+  doc: README.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'https://:project.pages.dev/*' -LiteralPath 'public/_headers') -and (Select-String -Quiet -SimpleMatch -Pattern 'X-Robots-Tag: noindex' -LiteralPath 'public/_headers')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "La preview de GitHub sigue separada y en noindex."
+  doc: README.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern "PUBLIC_INDEXABLE: 'false'" -LiteralPath '.github/workflows/pages.yml') -and (Select-String -Quiet -SimpleMatch -Pattern 'BASE_PATH:' -LiteralPath '.github/workflows/pages.yml')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "El footer acredita a TheMonkeys en ambos idiomas."
+  doc: PRODUCT.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'href="https://themonkeys.do"' -LiteralPath 'src/components/Home.astro') -and (Select-String -Quiet -SimpleMatch -Pattern "siteCredit: 'Made by'" -LiteralPath 'src/data/copy.ts') -and (Select-String -Quiet -SimpleMatch -Pattern "siteCredit: 'Hecha por'" -LiteralPath 'src/data/copy.ts')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "Doble firma combina dos recorridos contrarios y respeta movimiento reducido."
+  doc: DESIGN.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'animation-direction: reverse' -LiteralPath 'src/components/FeaturedBackdrop.astro') -and (Select-String -Quiet -SimpleMatch -Pattern 'prefers-reduced-motion: reduce' -LiteralPath 'src/components/FeaturedBackdrop.astro') -and (Select-String -Quiet -SimpleMatch -Pattern 'outlineFirst' -LiteralPath 'src/components/FeaturedBackdrop.astro')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "La configuración de producción documenta el dominio plural y la raíz."
+  doc: docs/PRODUCTION.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'SITE_URL=https://cakesbyyas.com' -LiteralPath '.env.example') -and (Select-String -Quiet -SimpleMatch -Pattern 'BASE_PATH=/' -LiteralPath '.env.example') -and (Select-String -Quiet -SimpleMatch -Pattern 'PUBLIC_INDEXABLE=true' -LiteralPath '.env.example')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "El verificador de producción cubre aliases, consulta y crédito."
+  doc: docs/PRODUCTION.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern 'https://www.cakebyyas.com' -LiteralPath 'scripts/verify-production.mjs') -and (Select-String -Quiet -SimpleMatch -Pattern 'utm_source=production-review' -LiteralPath 'scripts/verify-production.mjs') -and (Select-String -Quiet -SimpleMatch -Pattern 'href="https://themonkeys.do"' -LiteralPath 'scripts/verify-production.mjs')) { exit 0 } else { exit 1 }
+  expect: pass
+
+- claim: "La seguridad del artefacto no permite scripts inline ni fuentes externas."
+  doc: docs/PRODUCTION.md
+  assert: if ((Select-String -Quiet -SimpleMatch -Pattern "script-src 'self';" -LiteralPath 'public/_headers') -and (Select-String -Quiet -SimpleMatch -Pattern "font-src 'self';" -LiteralPath 'public/_headers') -and (Select-String -Quiet -SimpleMatch -Pattern 'max-age=31536000, immutable' -LiteralPath 'public/_headers')) { exit 0 } else { exit 1 }
   expect: pass
