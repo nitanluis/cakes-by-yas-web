@@ -16,4 +16,10 @@ for (const [,name,amount,unit] of tokens) {
   assert.equal(cssSeconds(`${amount}${unit}`),expected,name);
   assert.equal(cssSeconds(`${expected}s`),expected,`${name} minified`);
 }
+const duration = name => {
+  const token = tokens.find(([,key]) => key === name);
+  assert.ok(token, name);
+  return cssSeconds(`${token[2]}${token[3]}`);
+};
+assert.ok(duration('--dur-intro-min') + duration('--dur-intro-handoff') + duration('--dur-line') < duration('--dur-intro-failsafe'), 'The opaque handoff and curtain must finish before the safety timeout.');
 console.log(`Motion timing: ${tokens.length} tokens preserve duration in ms and minified s.`);

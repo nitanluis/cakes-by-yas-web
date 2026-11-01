@@ -79,11 +79,13 @@
       },
       "preloader": {
         "oncePerTab": true,
-        "exit": "logo to header + curved 1200ms wipe",
+        "exit": "opaque logo handoff to header, then curved 1200ms wipe",
         "assetWaitCapMs": 1800,
         "failSafeMs": 6500,
         "minimumMs": 3600,
-        "artDirection": "three piping masks, original lettering, hold, header handoff",
+        "artDirection": "three piping masks, original lettering, hold, opaque header handoff, curtain",
+        "mobileViewport": "minimum 100dvh; centered 70vw lockup; height-only resize does not cancel",
+        "scrollLock": "fixed body only after JS guard is installed; restore on every finish",
         "replayQuery": "intro=signature",
         "interruptible": true,
         "reducedMotion": "skip"

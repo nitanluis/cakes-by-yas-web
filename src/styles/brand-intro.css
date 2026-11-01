@@ -1,9 +1,15 @@
-.brand-preloader { display: none; position: fixed; inset: 0; z-index: 40; pointer-events: none; animation: intro-failsafe var(--dur-intro-failsafe) steps(1,end) forwards; }
+.brand-preloader { --intro-backdrop: var(--color-bg); display: none; position: fixed; inset: 0; min-height: 100dvh; z-index: 40; isolation: isolate; overflow: hidden; background: var(--intro-backdrop); pointer-events: auto; touch-action: none; animation: intro-failsafe var(--dur-intro-failsafe) steps(1,end) forwards; }
 html:is([data-brand-intro='pending'],[data-brand-intro='playing']) .brand-preloader { display: block; }
+/* Reset the CSS guard when the module starts, including on a slow mobile connection. */
+html[data-brand-intro='playing'] .brand-preloader { animation-name: intro-playing-failsafe; }
+html[data-intro-phase='curtain'] .brand-preloader { background: transparent; }
+html[data-intro-locked] { overflow: hidden; overscroll-behavior: none; }
+html[data-intro-locked] body { position: fixed; top: var(--intro-page-offset,0); left: 0; right: 0; width: 100%; overflow: hidden; }
 .brand-preloader > svg { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--color-bg); overflow: visible; }
 .brand-preloader__lockup { position: absolute; left: 50%; top: 50%; width: min(var(--intro-logo-w),78vw); transform: translate(-50%,-50%); transform-origin: center; }
 .brand-preloader__lockup > svg { display: block; width: 100%; height: auto; }
 @keyframes intro-failsafe { to { visibility: hidden; } }
+@keyframes intro-playing-failsafe { to { visibility: hidden; } }
 .brand img { height: auto; max-height: var(--logo-h); }
 .nav-dialog__brand { width: var(--logo-w); height: auto; max-height: var(--logo-h); object-fit: contain; }
 .error-brand img { width: var(--logo-w); height: auto; }
@@ -23,5 +29,5 @@ html:is([data-brand-intro='pending'],[data-brand-intro='playing']) .brand-preloa
 .button--order:hover { transform: none; border-color: var(--color-action); }
 .button--order:hover::before { transform: translate(-50%,-50%) scale(1.5); }
 @media (max-width:1600px) { .button--order { font-size: var(--text-lg); } }
-@media (max-width:768px) { .brand img { max-height: calc(var(--logo-h) * .8); } .order-feature__art { width: 65vw; } .order-feature > .large-copy { width: 100%; } }
+@media (max-width:768px) { .brand-preloader__lockup { width: min(var(--intro-logo-w),70vw); } .brand img { max-height: calc(var(--logo-h) * .8); } .order-feature__art { width: 65vw; } .order-feature > .large-copy { width: 100%; } }
 @media (prefers-reduced-motion:reduce) { .brand-preloader { display: none !important; } .button--circle,.button--circle:hover { transform: none; } .order-feature__cta { transform: translate(-50%,50%) scale(1.2); } }

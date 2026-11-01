@@ -70,7 +70,10 @@ window.addEventListener('pagehide', () => { featuredSizes.disconnect(); featured
 
 let splits: SplitText[] = [];
 let heroReveals: gsap.core.Tween[] = [];
-const revealHero = () => heroReveals.forEach(tween => { if (tween.paused()) tween.play(); });
+const revealHero = () => {
+  heroReveals.forEach(tween => { if (tween.paused()) tween.play(); });
+  if (root.dataset.brandIntro === 'complete' && !document.hidden && !document.querySelector('dialog[open]') && !reducedMotion()) lenis?.start();
+};
 function setupMotion() {
   motionContext?.revert();
   heroReveals = [];
@@ -84,7 +87,7 @@ function setupMotion() {
     const hero = document.querySelector('.hero');
     if (window.innerWidth > 768) {
       lenis = new Lenis({ anchors: true, lerp: Number.parseFloat(getComputedStyle(root).getPropertyValue('--scroll-lerp')) });
-      if (document.hidden || document.querySelector('dialog[open]')) lenis.stop();
+      if (document.hidden || document.querySelector('dialog[open]') || ['pending','playing'].includes(root.dataset.brandIntro || '')) lenis.stop();
       lenis.on('scroll', ScrollTrigger.update);
       ticker = time => lenis?.raf(time * 1000);
       gsap.ticker.add(ticker);
@@ -151,7 +154,7 @@ window.addEventListener('resize', () => {
 });
 document.addEventListener('visibilitychange', () => {
   root.classList.toggle('page-hidden', document.hidden);
-  if (document.hidden || document.querySelector('dialog[open]')) lenis?.stop(); else if (!reducedMotion()) lenis?.start();
+  if (document.hidden || document.querySelector('dialog[open]') || root.hasAttribute('data-intro-locked')) lenis?.stop(); else if (!reducedMotion()) lenis?.start();
 });
 
 const dialogTriggers = new WeakMap<HTMLDialogElement, HTMLElement>();
